@@ -1,0 +1,25 @@
+var annotated_dup =
+[
+    [ "NexBarraProgresso", "classNexBarraProgresso.html", "classNexBarraProgresso" ],
+    [ "NexBotao", "classNexBotao.html", "classNexBotao" ],
+    [ "NexBotaoDuplo", "classNexBotaoDuplo.html", "classNexBotaoDuplo" ],
+    [ "NexCheckbox", "classNexCheckbox.html", "classNexCheckbox" ],
+    [ "NexCrop", "classNexCrop.html", "classNexCrop" ],
+    [ "NexDisplay", "classNexDisplay.html", "classNexDisplay" ],
+    [ "NexGauge", "classNexGauge.html", "classNexGauge" ],
+    [ "NexGpio", "classNexGpio.html", "classNexGpio" ],
+    [ "NexGrafico", "classNexGrafico.html", "classNexGrafico" ],
+    [ "NexHotspot", "classNexHotspot.html", "classNexHotspot" ],
+    [ "NexImagem", "classNexImagem.html", "classNexImagem" ],
+    [ "NexNumero", "classNexNumero.html", "classNexNumero" ],
+    [ "NexObjeto", "classNexObjeto.html", "classNexObjeto" ],
+    [ "NexPagina", "classNexPagina.html", "classNexPagina" ],
+    [ "NexRadio", "classNexRadio.html", "classNexRadio" ],
+    [ "NexRtc", "classNexRtc.html", "classNexRtc" ],
+    [ "NexSlider", "classNexSlider.html", "classNexSlider" ],
+    [ "NexTexto", "classNexTexto.html", "classNexTexto" ],
+    [ "NexTextoDeslizante", "classNexTextoDeslizante.html", "classNexTextoDeslizante" ],
+    [ "NexTimer", "classNexTimer.html", "classNexTimer" ],
+    [ "NexToque", "classNexToque.html", "classNexToque" ],
+    [ "NexVariavel", "classNexVariavel.html", "classNexVariavel" ]
+];

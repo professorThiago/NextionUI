@@ -1,0 +1,6 @@
+<map id="src/NexObjeto.h" name="src/NexObjeto.h">
+<area shape="rect" id="node1" title="Classe base de todos os componentes Nextion." alt="" coords="5,5,132,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="51,229,135,256"/>
+<area shape="rect" id="node3" href="$NexConfig_8h.html" title="Configuração global da biblioteca NextionUI." alt="" coords="42,155,143,181"/>
+<area shape="rect" id="node4" href="$NexHardware_8h.html" title="Camada de hardware da biblioteca NextionUI." alt="" coords="106,80,229,107"/>
+</map>

@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['texto_127',['texto',['../classNexBotao.html#a3b340416a7268fcbe41d580c878ae89c',1,'NexBotao::texto(const char *t)'],['../classNexBotao.html#a5fa0ef7712ee09759b537b9e63c8f670',1,'NexBotao::texto(char *buf, uint16_t n)'],['../classNexTexto.html#a27dbef5f2d7f1478c0e82a5cef0de3d3',1,'NexTexto::texto(const char *t)'],['../classNexTexto.html#a317b4385dd0c878e3622e77fb19af5d4',1,'NexTexto::texto(char *buf, uint16_t n)'],['../classNexBotaoDuplo.html#ae2e54a95915c5e02faecc61cbe685ba0',1,'NexBotaoDuplo::texto()'],['../classNexVariavel.html#a6860f7dddbd4e16ef6a95cb18f251add',1,'NexVariavel::texto(const char *t)'],['../classNexVariavel.html#a93e4a1724d33fca744f5c272273f3b0c',1,'NexVariavel::texto(char *buf, uint16_t n)'],['../classNexTextoDeslizante.html#a97ad63a99beaa3d2a095bf6beae07d9b',1,'NexTextoDeslizante::texto()']]]
+];

@@ -1,0 +1,21 @@
+<map id="Representação gráfica da hiearquia da classe" name="Representação gráfica da hiearquia da classe">
+<area shape="rect" id="node1" href="$classNexObjeto.html" title="Classe base de todos os componentes Nextion." alt="" coords="5,259,96,285"/>
+<area shape="rect" id="node2" href="$classNexBarraProgresso.html" title="Componente barra de progresso do Nextion." alt="" coords="144,183,291,209"/>
+<area shape="rect" id="node3" href="$classNexGauge.html" title="Componente gauge (mostrador circular) do Nextion." alt="" coords="172,233,263,260"/>
+<area shape="rect" id="node4" href="$classNexGrafico.html" title="Componente de gráfico do Nextion." alt="" coords="170,284,265,311"/>
+<area shape="rect" id="node5" href="$classNexToque.html" title="Classe base para componentes com eventos de toque." alt="" coords="174,335,261,361"/>
+<area shape="rect" id="node6" href="$classNexBotao.html" title="Componente botão do Nextion." alt="" coords="371,5,458,32"/>
+<area shape="rect" id="node7" href="$classNexBotaoDuplo.html" title="Componente botão de dois estados (toggle) do Nextion." alt="" coords="353,56,477,83"/>
+<area shape="rect" id="node8" href="$classNexCheckbox.html" title="Componente checkbox do Nextion." alt="" coords="359,107,471,133"/>
+<area shape="rect" id="node9" href="$classNexCrop.html" title="Componente de imagem com recorte do Nextion." alt="" coords="375,157,454,184"/>
+<area shape="rect" id="node10" href="$classNexHotspot.html" title="Área de toque invisível do Nextion." alt="" coords="365,208,464,235"/>
+<area shape="rect" id="node11" href="$classNexImagem.html" title="Componente de imagem do Nextion." alt="" coords="363,259,466,285"/>
+<area shape="rect" id="node12" href="$classNexNumero.html" title="Componente de número do Nextion." alt="" coords="365,309,465,336"/>
+<area shape="rect" id="node13" href="$classNexPagina.html" title="Representa uma página do display Nextion." alt="" coords="369,360,460,387"/>
+<area shape="rect" id="node14" href="$classNexRadio.html" title="Componente radio button do Nextion." alt="" coords="372,411,457,437"/>
+<area shape="rect" id="node15" href="$classNexSlider.html" title="Componente slider do Nextion." alt="" coords="372,461,457,488"/>
+<area shape="rect" id="node16" href="$classNexTexto.html" title="Componente de texto do Nextion." alt="" coords="373,512,456,539"/>
+<area shape="rect" id="node17" href="$classNexTextoDeslizante.html" title="Componente de texto com rolagem automática do Nextion." alt="" coords="339,563,491,589"/>
+<area shape="rect" id="node18" href="$classNexTimer.html" title="Componente timer do Nextion." alt="" coords="371,613,458,640"/>
+<area shape="rect" id="node19" href="$classNexVariavel.html" title="Variável interna do Nextion (sem representação visual)." alt="" coords="364,664,465,691"/>
+</map>

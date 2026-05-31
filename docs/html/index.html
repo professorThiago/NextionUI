@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NextionUI: NextionUI</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">NextionUI
+   &#160;<span id="projectnumber">1.0.0</span>
+   </div>
+   <div id="projectbrief">Biblioteca moderna para displays Nextion no ESP32</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('index.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">NextionUI </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_README"></a> Biblioteca moderna para displays <b>Nextion</b> no ESP32 — API em português, zero alocações dinâmicas, fluent interface e Doxygen completo.</p>
+<p><a href="https://platformio.org"><img src="https://img.shields.io/badge/plataforma-ESP32%20%7C%20ESP8266%20%7C%20Arduino-blue" alt="Plataforma" class="inline"/></a> [<img src="https://img.shields.io/badge/licença-MIT-green" alt="Licença" class="inline"/>](LICENSE) <a href="library.json"><img src="https://img.shields.io/badge/versão-1.0.0-orange" alt="Versão" class="inline"/></a></p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md24"></a>
+Por que esta biblioteca?</h1>
+<p>A ITEADLIB_Arduino_Nextion original tem dois problemas sérios:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Problema   </th><th class="markdownTableHeadNone">Esta biblioteca    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">~400 linhas duplicadas (get/set por componente)   </td><td class="markdownTableBodyNone">Método genérico <code>set(attr, val)</code> na base    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>String</code> do Arduino em todo envio (heap fragmentado)   </td><td class="markdownTableBodyNone">Buffer fixo <code>snprintf</code> — zero alocações    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Funções globais espalhadas   </td><td class="markdownTableBodyNone">Classe <code><a class="el" href="classNexDisplay.html" title="Gerenciador principal do display Nextion.">NexDisplay</a></code> como ponto único    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Sem suporte a lambda   </td><td class="markdownTableBodyNone"><code>btn.aoSoltar([]() { ... })</code>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Debug sempre ligado (ruído no Serial)   </td><td class="markdownTableBodyNone">Debug desativado por padrão    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Documentação em inglês incompleta   </td><td class="markdownTableBodyNone">Doxygen completo em português   </td></tr>
+</table>
+<hr  />
+<h1><a class="anchor" id="autotoc_md26"></a>
+Instalação</h1>
+<div class="fragment"><div class="line">; platformio.ini</div>
+<div class="line">lib_deps =</div>
+<div class="line">    https://github.com/professorThiago/NextionUI</div>
+</div><!-- fragment --><hr  />
+<h1><a class="anchor" id="autotoc_md28"></a>
+Início rápido</h1>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="NextionUI_8h.html">NextionUI.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="classNexDisplay.html">NexDisplay</a> display;</div>
+<div class="line"><a class="code" href="classNexBotao.html">NexBotao</a>   btnLigar(0, 2, <span class="stringliteral">&quot;btn_ligar&quot;</span>);</div>
+<div class="line"><a class="code" href="classNexTexto.html">NexTexto</a>   tStatus (0, 3, <span class="stringliteral">&quot;t_status&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> setup() {</div>
+<div class="line">    display.<a class="code" href="classNexDisplay.html#a1f4cd8d9a15b29fb7c66f114116ccf7f">begin</a>(Serial2, 115200, 16, 17);</div>
+<div class="line">    display.<a class="code" href="classNexDisplay.html#acbb28310e39db90c135954393ec744b6">escutar</a>(btnLigar);</div>
+<div class="line"> </div>
+<div class="line">    btnLigar.aoSoltar([]() {</div>
+<div class="line">        tStatus.texto(<span class="stringliteral">&quot;LIGADO&quot;</span>)</div>
+<div class="line">               .corTexto(<a class="code" href="NexObjeto_8h.html#a55418cddd8fc0a93c4db0f1f52bd6687">COR_BRANCO</a>)</div>
+<div class="line">               .corFundo(<a class="code" href="NexObjeto_8h.html#ab2ed36b98652f54ec3e1fdc8a31c8b13">RGB565</a>(0, 150, 0));</div>
+<div class="line">    });</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> loop() {</div>
+<div class="line">    display.<a class="code" href="classNexDisplay.html#a3c83284210b55610a0a01861201755dd">atualizar</a>();</div>
+<div class="line">}</div>
+<div class="ttc" id="aNexObjeto_8h_html_a55418cddd8fc0a93c4db0f1f52bd6687"><div class="ttname"><a href="NexObjeto_8h.html#a55418cddd8fc0a93c4db0f1f52bd6687">COR_BRANCO</a></div><div class="ttdeci">#define COR_BRANCO</div><div class="ttdef"><b>Definition:</b> NexObjeto.h:334</div></div>
+<div class="ttc" id="aNexObjeto_8h_html_ab2ed36b98652f54ec3e1fdc8a31c8b13"><div class="ttname"><a href="NexObjeto_8h.html#ab2ed36b98652f54ec3e1fdc8a31c8b13">RGB565</a></div><div class="ttdeci">#define RGB565(r, g, b)</div><div class="ttdoc">Converte componentes RGB para o formato RGB565 usado pelo Nextion.</div><div class="ttdef"><b>Definition:</b> NexObjeto.h:329</div></div>
+<div class="ttc" id="aNextionUI_8h_html"><div class="ttname"><a href="NextionUI_8h.html">NextionUI.h</a></div><div class="ttdoc">Ponto único de inclusão da biblioteca NextionUI.</div></div>
+<div class="ttc" id="aclassNexBotao_html"><div class="ttname"><a href="classNexBotao.html">NexBotao</a></div><div class="ttdoc">Componente botão do Nextion.</div><div class="ttdef"><b>Definition:</b> NexComponentes.h:70</div></div>
+<div class="ttc" id="aclassNexDisplay_html"><div class="ttname"><a href="classNexDisplay.html">NexDisplay</a></div><div class="ttdoc">Gerenciador principal do display Nextion.</div><div class="ttdef"><b>Definition:</b> NexDisplay.h:87</div></div>
+<div class="ttc" id="aclassNexDisplay_html_a1f4cd8d9a15b29fb7c66f114116ccf7f"><div class="ttname"><a href="classNexDisplay.html#a1f4cd8d9a15b29fb7c66f114116ccf7f">NexDisplay::begin</a></div><div class="ttdeci">bool begin(HardwareSerial &amp;serial, uint32_t baudrate=115200, int8_t pinoRX=-1, int8_t pinoTX=-1)</div><div class="ttdoc">Inicializa o display Nextion.</div><div class="ttdef"><b>Definition:</b> NexDisplay.cpp:19</div></div>
+<div class="ttc" id="aclassNexDisplay_html_a3c83284210b55610a0a01861201755dd"><div class="ttname"><a href="classNexDisplay.html#a3c83284210b55610a0a01861201755dd">NexDisplay::atualizar</a></div><div class="ttdeci">void atualizar()</div><div class="ttdoc">Processa eventos recebidos do display (toque, mudança de página).</div><div class="ttdef"><b>Definition:</b> NexDisplay.cpp:33</div></div>
+<div class="ttc" id="aclassNexDisplay_html_acbb28310e39db90c135954393ec744b6"><div class="ttname"><a href="classNexDisplay.html#acbb28310e39db90c135954393ec744b6">NexDisplay::escutar</a></div><div class="ttdeci">bool escutar(NexToque &amp;componente)</div><div class="ttdoc">Registra um componente para receber eventos de toque.</div><div class="ttdef"><b>Definition:</b> NexDisplay.cpp:94</div></div>
+<div class="ttc" id="aclassNexTexto_html"><div class="ttname"><a href="classNexTexto.html">NexTexto</a></div><div class="ttdoc">Componente de texto do Nextion.</div><div class="ttdef"><b>Definition:</b> NexComponentes.h:106</div></div>
+</div><!-- fragment --><hr  />
+<h1><a class="anchor" id="autotoc_md30"></a>
+API principal</h1>
+<h2><a class="anchor" id="autotoc_md31"></a>
+NexDisplay</h2>
+<div class="fragment"><div class="line">display.<a class="code" href="classNexDisplay.html#a1f4cd8d9a15b29fb7c66f114116ccf7f">begin</a>(Serial2, 115200, 16, 17);  <span class="comment">// inicializa</span></div>
+<div class="line">display.<a class="code" href="classNexDisplay.html#a3c83284210b55610a0a01861201755dd">atualizar</a>();                       <span class="comment">// no loop()</span></div>
+<div class="line">display.<a class="code" href="classNexDisplay.html#acbb28310e39db90c135954393ec744b6">escutar</a>(componente);               <span class="comment">// registra toque</span></div>
+<div class="line">display.<a class="code" href="classNexDisplay.html#a597bf2854c74b9e64abe942119c59316">irPara</a>(<span class="stringliteral">&quot;p1_dash&quot;</span>);                 <span class="comment">// navega por nome</span></div>
+<div class="line">display.<a class="code" href="classNexDisplay.html#a597bf2854c74b9e64abe942119c59316">irPara</a>(1);                         <span class="comment">// navega por índice</span></div>
+<div class="line">display.<a class="code" href="classNexDisplay.html#ae502cf6602abd54a06285a1dddf134ca">paginaAtual</a>();                     <span class="comment">// retorna uint8_t</span></div>
+<div class="line">display.<a class="code" href="classNexDisplay.html#afc3a3c56ffa7e515eb5fb6e0690200d7">brilho</a>(80);                        <span class="comment">// 0–100%</span></div>
+<div class="line">display.<a class="code" href="classNexDisplay.html#a4f36d16cf44421e12237fd61979fb13a">repouso</a>(300);                      <span class="comment">// segundos (0=nunca)</span></div>
+<div class="line">display.<a class="code" href="classNexDisplay.html#adca99d59d2a952d57cbab877a61d6093">cmd</a>(<span class="stringliteral">&quot;dim=50&quot;</span>);                     <span class="comment">// comando bruto</span></div>
+<div class="line">display.<a class="code" href="classNexDisplay.html#aecda72b56be79509a24a8919d809342a">cmdf</a>(<span class="stringliteral">&quot;t0.txt=\&quot;%d°C\&quot;&quot;</span>, 22);      <span class="comment">// printf-style</span></div>
+<div class="line">display.<a class="code" href="classNexDisplay.html#a3528cc0f8dc1ad18dabff0663a9ea17c">aoMudarPagina</a>([](uint8_t pg) { }); <span class="comment">// callback de página</span></div>
+<div class="ttc" id="aclassNexDisplay_html_a3528cc0f8dc1ad18dabff0663a9ea17c"><div class="ttname"><a href="classNexDisplay.html#a3528cc0f8dc1ad18dabff0663a9ea17c">NexDisplay::aoMudarPagina</a></div><div class="ttdeci">void aoMudarPagina(CbPagina cb)</div><div class="ttdoc">Registra callback chamado quando a página muda.</div><div class="ttdef"><b>Definition:</b> NexDisplay.h:271</div></div>
+<div class="ttc" id="aclassNexDisplay_html_a4f36d16cf44421e12237fd61979fb13a"><div class="ttname"><a href="classNexDisplay.html#a4f36d16cf44421e12237fd61979fb13a">NexDisplay::repouso</a></div><div class="ttdeci">void repouso(uint16_t timeoutS)</div><div class="ttdoc">Configura o repouso automático.</div><div class="ttdef"><b>Definition:</b> NexDisplay.cpp:145</div></div>
+<div class="ttc" id="aclassNexDisplay_html_a597bf2854c74b9e64abe942119c59316"><div class="ttname"><a href="classNexDisplay.html#a597bf2854c74b9e64abe942119c59316">NexDisplay::irPara</a></div><div class="ttdeci">void irPara(const char *nome)</div><div class="ttdoc">Navega para uma página pelo nome.</div><div class="ttdef"><b>Definition:</b> NexDisplay.cpp:116</div></div>
+<div class="ttc" id="aclassNexDisplay_html_adca99d59d2a952d57cbab877a61d6093"><div class="ttname"><a href="classNexDisplay.html#adca99d59d2a952d57cbab877a61d6093">NexDisplay::cmd</a></div><div class="ttdeci">void cmd(const char *c)</div><div class="ttdoc">Envia um comando bruto ao Nextion.</div><div class="ttdef"><b>Definition:</b> NexDisplay.h:212</div></div>
+<div class="ttc" id="aclassNexDisplay_html_ae502cf6602abd54a06285a1dddf134ca"><div class="ttname"><a href="classNexDisplay.html#ae502cf6602abd54a06285a1dddf134ca">NexDisplay::paginaAtual</a></div><div class="ttdeci">uint8_t paginaAtual() const</div><div class="ttdoc">Retorna o índice da página atualmente exibida.</div><div class="ttdef"><b>Definition:</b> NexDisplay.h:195</div></div>
+<div class="ttc" id="aclassNexDisplay_html_aecda72b56be79509a24a8919d809342a"><div class="ttname"><a href="classNexDisplay.html#aecda72b56be79509a24a8919d809342a">NexDisplay::cmdf</a></div><div class="ttdeci">void cmdf(const char *fmt,...)</div><div class="ttdoc">Envia um comando formatado (printf-style) ao Nextion.</div><div class="ttdef"><b>Definition:</b> NexDisplay.cpp:130</div></div>
+<div class="ttc" id="aclassNexDisplay_html_afc3a3c56ffa7e515eb5fb6e0690200d7"><div class="ttname"><a href="classNexDisplay.html#afc3a3c56ffa7e515eb5fb6e0690200d7">NexDisplay::brilho</a></div><div class="ttdeci">void brilho(uint8_t pct)</div><div class="ttdoc">Define o brilho do display.</div><div class="ttdef"><b>Definition:</b> NexDisplay.cpp:139</div></div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md32"></a>
+Atualizar componentes</h2>
+<div class="fragment"><div class="line"><span class="comment">// Texto simples</span></div>
+<div class="line">txt.texto(<span class="stringliteral">&quot;Olá&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Texto formatado</span></div>
+<div class="line">txt.setf(<span class="stringliteral">&quot;txt&quot;</span>, <span class="stringliteral">&quot;%d°C&quot;</span>, temperatura);</div>
+<div class="line">txt.setf(<span class="stringliteral">&quot;txt&quot;</span>, <span class="stringliteral">&quot;%02d:%02d&quot;</span>, hora, minuto);</div>
+<div class="line">txt.setf(<span class="stringliteral">&quot;txt&quot;</span>, <span class="stringliteral">&quot;%.1f%%&quot;</span>, umidade);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Qualquer atributo numérico pelo nome</span></div>
+<div class="line">comp.set(<span class="stringliteral">&quot;bco&quot;</span>, <a class="code" href="NexObjeto_8h.html#ab2ed36b98652f54ec3e1fdc8a31c8b13">RGB565</a>(0, 100, 200));  <span class="comment">// cor de fundo</span></div>
+<div class="line">comp.set(<span class="stringliteral">&quot;pco&quot;</span>, <a class="code" href="NexObjeto_8h.html#a55418cddd8fc0a93c4db0f1f52bd6687">COR_BRANCO</a>);           <span class="comment">// cor do texto</span></div>
+<div class="line">comp.set(<span class="stringliteral">&quot;val&quot;</span>, 42);                   <span class="comment">// valor</span></div>
+<div class="line">comp.set(<span class="stringliteral">&quot;en&quot;</span>,  1);                    <span class="comment">// habilitado</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Ler atributo numérico</span></div>
+<div class="line">uint32_t v;</div>
+<div class="line">comp.get(<span class="stringliteral">&quot;val&quot;</span>, v);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Ler atributo de texto</span></div>
+<div class="line"><span class="keywordtype">char</span> buf[32];</div>
+<div class="line">comp.get(<span class="stringliteral">&quot;txt&quot;</span>, buf, <span class="keyword">sizeof</span>(buf));</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md33"></a>
+Fluent interface (encadeamento)</h2>
+<div class="fragment"><div class="line">btn.texto(<span class="stringliteral">&quot;ATIVO&quot;</span>)</div>
+<div class="line">   .corFundo(<a class="code" href="NexObjeto_8h.html#ab2ed36b98652f54ec3e1fdc8a31c8b13">RGB565</a>(0, 120, 200))</div>
+<div class="line">   .corTexto(<a class="code" href="NexObjeto_8h.html#a55418cddd8fc0a93c4db0f1f52bd6687">COR_BRANCO</a>)</div>
+<div class="line">   .visivel(<span class="keyword">true</span>)</div>
+<div class="line">   .atualizar();</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md34"></a>
+Callbacks</h2>
+<div class="fragment"><div class="line"><span class="comment">// Lambda simples (recomendado)</span></div>
+<div class="line">btn.aoPressionar([]() { Serial.println(<span class="stringliteral">&quot;Pressionado!&quot;</span>); });</div>
+<div class="line">btn.aoSoltar    ([]() { Serial.println(<span class="stringliteral">&quot;Solto!&quot;</span>); });</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Com ponteiro de contexto</span></div>
+<div class="line">btn.aoSoltar(minhaFuncao, &amp;meuObjeto);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Timer</span></div>
+<div class="line">timer.ciclo(1000).iniciar();</div>
+<div class="line">timer.aoDisparar([]() { atualizarDados(); });</div>
+</div><!-- fragment --><hr  />
+<h1><a class="anchor" id="autotoc_md36"></a>
+Cores em RGB565</h1>
+<div class="fragment"><div class="line"><a class="code" href="NexObjeto_8h.html#ab2ed36b98652f54ec3e1fdc8a31c8b13">RGB565</a>(r, g, b)     <span class="comment">// converte RGB 0-255 para RGB565</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="NexObjeto_8h.html#aaa546993c5436dccf636dc40f07e25b9">COR_PRETO</a>    <a class="code" href="NexObjeto_8h.html#a55418cddd8fc0a93c4db0f1f52bd6687">COR_BRANCO</a>   <a class="code" href="NexObjeto_8h.html#a3552292a94ed29cf28b15c8a447da431">COR_VERMELHO</a></div>
+<div class="line"><a class="code" href="NexObjeto_8h.html#a9c12e0202321b096908beadd87f3ad2d">COR_VERDE</a>    <a class="code" href="NexObjeto_8h.html#ade71171f769c91152ef71445e9d98bfc">COR_AZUL</a>     <a class="code" href="NexObjeto_8h.html#a8be5044487b613553f34df00b9609f49">COR_AMARELO</a></div>
+<div class="line"><a class="code" href="NexObjeto_8h.html#a8ebeebd8f4de79103c42879fa70cdc80">COR_CIANO</a>    <a class="code" href="NexObjeto_8h.html#a0c23ef047ab8bc8a0ed0d08ac0f69f02">COR_MAGENTA</a>  <a class="code" href="NexObjeto_8h.html#a6f8e51fbbad915977fd9775905faa654">COR_CINZA</a></div>
+<div class="ttc" id="aNexObjeto_8h_html_a0c23ef047ab8bc8a0ed0d08ac0f69f02"><div class="ttname"><a href="NexObjeto_8h.html#a0c23ef047ab8bc8a0ed0d08ac0f69f02">COR_MAGENTA</a></div><div class="ttdeci">#define COR_MAGENTA</div><div class="ttdef"><b>Definition:</b> NexObjeto.h:340</div></div>
+<div class="ttc" id="aNexObjeto_8h_html_a3552292a94ed29cf28b15c8a447da431"><div class="ttname"><a href="NexObjeto_8h.html#a3552292a94ed29cf28b15c8a447da431">COR_VERMELHO</a></div><div class="ttdeci">#define COR_VERMELHO</div><div class="ttdef"><b>Definition:</b> NexObjeto.h:335</div></div>
+<div class="ttc" id="aNexObjeto_8h_html_a6f8e51fbbad915977fd9775905faa654"><div class="ttname"><a href="NexObjeto_8h.html#a6f8e51fbbad915977fd9775905faa654">COR_CINZA</a></div><div class="ttdeci">#define COR_CINZA</div><div class="ttdef"><b>Definition:</b> NexObjeto.h:341</div></div>
+<div class="ttc" id="aNexObjeto_8h_html_a8be5044487b613553f34df00b9609f49"><div class="ttname"><a href="NexObjeto_8h.html#a8be5044487b613553f34df00b9609f49">COR_AMARELO</a></div><div class="ttdeci">#define COR_AMARELO</div><div class="ttdef"><b>Definition:</b> NexObjeto.h:338</div></div>
+<div class="ttc" id="aNexObjeto_8h_html_a8ebeebd8f4de79103c42879fa70cdc80"><div class="ttname"><a href="NexObjeto_8h.html#a8ebeebd8f4de79103c42879fa70cdc80">COR_CIANO</a></div><div class="ttdeci">#define COR_CIANO</div><div class="ttdef"><b>Definition:</b> NexObjeto.h:339</div></div>
+<div class="ttc" id="aNexObjeto_8h_html_a9c12e0202321b096908beadd87f3ad2d"><div class="ttname"><a href="NexObjeto_8h.html#a9c12e0202321b096908beadd87f3ad2d">COR_VERDE</a></div><div class="ttdeci">#define COR_VERDE</div><div class="ttdef"><b>Definition:</b> NexObjeto.h:336</div></div>
+<div class="ttc" id="aNexObjeto_8h_html_aaa546993c5436dccf636dc40f07e25b9"><div class="ttname"><a href="NexObjeto_8h.html#aaa546993c5436dccf636dc40f07e25b9">COR_PRETO</a></div><div class="ttdeci">#define COR_PRETO</div><div class="ttdef"><b>Definition:</b> NexObjeto.h:333</div></div>
+<div class="ttc" id="aNexObjeto_8h_html_ade71171f769c91152ef71445e9d98bfc"><div class="ttname"><a href="NexObjeto_8h.html#ade71171f769c91152ef71445e9d98bfc">COR_AZUL</a></div><div class="ttdeci">#define COR_AZUL</div><div class="ttdef"><b>Definition:</b> NexObjeto.h:337</div></div>
+</div><!-- fragment --><hr  />
+<h1><a class="anchor" id="autotoc_md38"></a>
+Debug</h1>
+<div class="fragment"><div class="line"><span class="comment">// Opção 1 — DebugManager (recomendado)</span></div>
+<div class="line"><span class="preprocessor">#include &lt;DebugManager.h&gt;</span>   <span class="comment">// ANTES de NextionUI.h</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="NextionUI_8h.html">NextionUI.h</a>&gt;</span></div>
+<div class="line"><span class="comment">// Mensagens aparecem com prefixo [Nextion] no nível VERBOSE</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Opção 2 — Serial direto</span></div>
+<div class="line"><span class="preprocessor">#define NEX_DEBUG_SERIAL Serial</span></div>
+<div class="line"><span class="preprocessor">#include &lt;NextionUI.h&gt;</span></div>
+</div><!-- fragment --><hr  />
+<h1><a class="anchor" id="autotoc_md40"></a>
+Componentes disponíveis</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Classe   </th><th class="markdownTableHeadNone">Nextion   </th><th class="markdownTableHeadNone">Principais métodos    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexBotao.html" title="Componente botão do Nextion.">NexBotao</a></code>   </td><td class="markdownTableBodyNone">Button   </td><td class="markdownTableBodyNone"><code>texto()</code>, <code>corFundoPressionado()</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexTexto.html" title="Componente de texto do Nextion.">NexTexto</a></code>   </td><td class="markdownTableBodyNone">Text   </td><td class="markdownTableBodyNone"><code>texto()</code>, <code>setf()</code>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexNumero.html" title="Componente de número do Nextion.">NexNumero</a></code>   </td><td class="markdownTableBodyNone">Number   </td><td class="markdownTableBodyNone"><code>valor()</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexSlider.html" title="Componente slider do Nextion.">NexSlider</a></code>   </td><td class="markdownTableBodyNone">Slider   </td><td class="markdownTableBodyNone"><code>valor()</code>, <code>minimo()</code>, <code>maximo()</code>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexBarraProgresso.html" title="Componente barra de progresso do Nextion.">NexBarraProgresso</a></code>   </td><td class="markdownTableBodyNone">ProgressBar   </td><td class="markdownTableBodyNone"><code>valor()</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexGrafico.html" title="Componente de gráfico do Nextion.">NexGrafico</a></code>   </td><td class="markdownTableBodyNone">Waveform   </td><td class="markdownTableBodyNone"><code>adicionarPonto(canal, val)</code>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexGauge.html" title="Componente gauge (mostrador circular) do Nextion.">NexGauge</a></code>   </td><td class="markdownTableBodyNone">Gauge   </td><td class="markdownTableBodyNone"><code>valor()</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexCheckbox.html" title="Componente checkbox do Nextion.">NexCheckbox</a></code>   </td><td class="markdownTableBodyNone">Checkbox   </td><td class="markdownTableBodyNone"><code>marcado()</code>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexRadio.html" title="Componente radio button do Nextion.">NexRadio</a></code>   </td><td class="markdownTableBodyNone">Radio   </td><td class="markdownTableBodyNone"><code>selecionado()</code>, <code>valor()</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexBotaoDuplo.html" title="Componente botão de dois estados (toggle) do Nextion.">NexBotaoDuplo</a></code>   </td><td class="markdownTableBodyNone">DualStateButton   </td><td class="markdownTableBodyNone"><code>valor()</code>, <code>texto()</code>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexVariavel.html" title="Variável interna do Nextion (sem representação visual).">NexVariavel</a></code>   </td><td class="markdownTableBodyNone">Variable   </td><td class="markdownTableBodyNone"><code>valor()</code>, <code>texto()</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexTimer.html" title="Componente timer do Nextion.">NexTimer</a></code>   </td><td class="markdownTableBodyNone">Timer   </td><td class="markdownTableBodyNone"><code>ciclo()</code>, <code>iniciar()</code>, <code>parar()</code>, <code>aoDisparar()</code>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexTextoDeslizante.html" title="Componente de texto com rolagem automática do Nextion.">NexTextoDeslizante</a></code>   </td><td class="markdownTableBodyNone">Scrolltext   </td><td class="markdownTableBodyNone"><code>texto()</code>, <code>ciclo()</code>, <code>iniciar()</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexImagem.html" title="Componente de imagem do Nextion.">NexImagem</a></code>   </td><td class="markdownTableBodyNone">Picture   </td><td class="markdownTableBodyNone"><code>imagem()</code>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexCrop.html" title="Componente de imagem com recorte do Nextion.">NexCrop</a></code>   </td><td class="markdownTableBodyNone">Crop   </td><td class="markdownTableBodyNone"><code>imagem()</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexHotspot.html" title="Área de toque invisível do Nextion.">NexHotspot</a></code>   </td><td class="markdownTableBodyNone">Hotspot   </td><td class="markdownTableBodyNone"><code>aoPressionar()</code>, <code>aoSoltar()</code>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexPagina.html" title="Representa uma página do display Nextion.">NexPagina</a></code>   </td><td class="markdownTableBodyNone">Page   </td><td class="markdownTableBodyNone"><code>mostrar()</code>, <code>aoEntrar()</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexRtc.html" title="Interface com o RTC interno do Nextion.">NexRtc</a></code>   </td><td class="markdownTableBodyNone">RTC   </td><td class="markdownTableBodyNone"><code>escrever()</code>, <code>ler()</code>, <code>lerHora()</code>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classNexGpio.html" title="Interface com os pinos GPIO do próprio display Nextion.">NexGpio</a></code>   </td><td class="markdownTableBodyNone">GPIO   </td><td class="markdownTableBodyNone"><code>modoSaida()</code>, <code>escrever()</code>, <code>ler()</code>, <code>pwm()</code>   </td></tr>
+</table>
+<hr  />
+<h1><a class="anchor" id="autotoc_md42"></a>
+Configuração</h1>
+<div class="fragment"><div class="line"><span class="preprocessor">#define NEX_BUFFER_CMD        256   </span><span class="comment">// buffer (padrão: 128)</span></div>
+<div class="line"><span class="preprocessor">#define NEX_MAX_COMPONENTES    64   </span><span class="comment">// lista de escuta (padrão: 32)</span></div>
+<div class="line"><span class="preprocessor">#define NEX_TIMEOUT_MS        200   </span><span class="comment">// timeout serial (padrão: 100)</span></div>
+<div class="line"><span class="preprocessor">#define NEX_AGUARDAR_CONFIRMACAO 1  </span><span class="comment">// aguardar ACK (padrão: 0)</span></div>
+<div class="line">#include &lt;NextionUI.h&gt;</div>
+</div><!-- fragment --><hr  />
+<h1><a class="anchor" id="autotoc_md44"></a>
+Exemplos incluídos</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Exemplo   </th><th class="markdownTableHeadNone">Descrição    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>01_OlaMundo</code>   </td><td class="markdownTableBodyNone">Inicializar display e atualizar texto    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>02_BotaoCallback</code>   </td><td class="markdownTableBodyNone">Lambdas, callbacks estilo antigo, toggle    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>03_AtualizarComponentes</code>   </td><td class="markdownTableBodyNone">Todos os métodos de atualização    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>04_NexDisplay</code>   </td><td class="markdownTableBodyNone">Sistema multipágina com timer e slider    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>05_MixCompleto</code>   </td><td class="markdownTableBodyNone">Gauge, gráfico, RTC, GPIO, texto deslizante    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>06_DebugManager</code>   </td><td class="markdownTableBodyNone">Integração com DebugManager   </td></tr>
+</table>
+<hr  />
+<h1><a class="anchor" id="autotoc_md46"></a>
+Licença</h1>
+<p>MIT — veja [LICENSE](LICENSE)</p>
+<h1><a class="anchor" id="autotoc_md47"></a>
+Autor</h1>
+<p><b>professorThiago</b> — <a href="https://github.com/professorThiago">github.com/professorThiago</a> </p>
+</div></div><!-- PageDoc -->
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Gerado em Domingo, 31 de Maio de 2026 11:04:36 para NextionUI por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

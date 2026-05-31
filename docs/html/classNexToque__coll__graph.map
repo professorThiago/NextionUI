@@ -1,0 +1,4 @@
+<map id="NexToque" name="NexToque">
+<area shape="rect" id="node1" title="Classe base para componentes com eventos de toque." alt="" coords="7,80,94,107"/>
+<area shape="rect" id="node2" href="$classNexObjeto.html" title="Classe base de todos os componentes Nextion." alt="" coords="5,5,96,32"/>
+</map>

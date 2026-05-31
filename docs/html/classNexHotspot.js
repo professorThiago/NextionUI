@@ -1,0 +1,28 @@
+var classNexHotspot =
+[
+    [ "NexHotspot", "classNexHotspot.html#a34da79d39cb9dad369f6cfbe6ae049df", null ],
+    [ "aoPressionar", "classNexHotspot.html#a767caed512e5935c501cae5e8d6d016c", null ],
+    [ "aoPressionar", "classNexHotspot.html#a4b74c0d2b07440e6ab5589e0996daab1", null ],
+    [ "aoSoltar", "classNexHotspot.html#ab786470fb6610986b69931e1c5db2dd5", null ],
+    [ "aoSoltar", "classNexHotspot.html#ae245053b194f3b2b688ca9fcafc58179", null ],
+    [ "atualizar", "classNexHotspot.html#a306b7207758a68fe83f87908cf35f183", null ],
+    [ "cmd", "classNexHotspot.html#a0cfab4d8e6cef9af45590fda4cdd42b4", null ],
+    [ "corFundo", "classNexHotspot.html#aa49d3b8fd52e5bd53557aff812430966", null ],
+    [ "corTexto", "classNexHotspot.html#a8d7b0b76b1f914b7640aec0510438a72", null ],
+    [ "despachar", "classNexHotspot.html#a3478daded0eefe683fab4c2fe61cc3d8", null ],
+    [ "get", "classNexHotspot.html#a603c5d953cbc48659788bc5394afc531", null ],
+    [ "get", "classNexHotspot.html#a25fbcefae950606b59dfb6920bf41002", null ],
+    [ "id", "classNexHotspot.html#a876a745633ee52711c68f8ba35923b19", null ],
+    [ "imprimirInfo", "classNexHotspot.html#a6bed2ba5e85e1e8ac0ec4f52d43763c3", null ],
+    [ "nome", "classNexHotspot.html#a927bd45661b6b05694db557cbac8bc71", null ],
+    [ "pagina", "classNexHotspot.html#a1dd17c22b508c098bc464ceb88c0f85b", null ],
+    [ "removerCbPressionar", "classNexHotspot.html#a506a653f70de098242216c843ae3a4eb", null ],
+    [ "removerCbSoltar", "classNexHotspot.html#a780df345d9a33168b5d4d94de4eb6f53", null ],
+    [ "set", "classNexHotspot.html#ac8a0767b0c2d60a89901db800b186b6a", null ],
+    [ "set", "classNexHotspot.html#a86b6a2c73a24d141bad7bb6daf68a491", null ],
+    [ "setf", "classNexHotspot.html#aea5628de483d1b5b5e4e3332a45a4b37", null ],
+    [ "visivel", "classNexHotspot.html#aee9dfb38641b4a2a7db89b57d94866fb", null ],
+    [ "_cid", "classNexHotspot.html#ada3759799ec7bd45ccc81bb76a014f43", null ],
+    [ "_nome", "classNexHotspot.html#ab1c345b6db4d4c1d73623c9290da9867", null ],
+    [ "_pid", "classNexHotspot.html#a2e588ce8e5d61bed17a3a60c9ede88c5", null ]
+];

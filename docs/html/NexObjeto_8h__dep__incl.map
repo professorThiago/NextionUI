@@ -1,0 +1,10 @@
+<map id="src/NexObjeto.h" name="src/NexObjeto.h">
+<area shape="rect" id="node1" title="Classe base de todos os componentes Nextion." alt="" coords="121,5,247,32"/>
+<area shape="rect" id="node2" href="$NexObjeto_8cpp.html" title="Implementação da classe base NexObjeto." alt="" coords="5,80,147,107"/>
+<area shape="rect" id="node3" href="$NextionUI_8h.html" title="Ponto único de inclusão da biblioteca NextionUI." alt="" coords="173,304,296,331"/>
+<area shape="rect" id="node4" href="$NexToque_8h.html" title="Componentes com suporte a eventos de toque." alt="" coords="261,80,382,107"/>
+<area shape="rect" id="node5" href="$NexComponentes_8h.html" title="Todos os componentes Nextion com API em português." alt="" coords="272,155,445,181"/>
+<area shape="rect" id="node8" href="$NexToque_8cpp.html" title="Implementação de NexToque." alt="" coords="469,155,605,181"/>
+<area shape="rect" id="node6" href="$NexDisplay_8h.html" title="Ponto de entrada único para o display Nextion." alt="" coords="323,229,453,256"/>
+<area shape="rect" id="node7" href="$NexDisplay_8cpp.html" title="Implementação do NexDisplay." alt="" coords="321,304,466,331"/>
+</map>

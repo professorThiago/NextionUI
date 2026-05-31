@@ -1,0 +1,5 @@
+<map id="NexCrop" name="NexCrop">
+<area shape="rect" id="node1" title="Componente de imagem com recorte do Nextion." alt="" coords="11,155,90,181"/>
+<area shape="rect" id="node2" href="$classNexToque.html" title="Classe base para componentes com eventos de toque." alt="" coords="7,80,94,107"/>
+<area shape="rect" id="node3" href="$classNexObjeto.html" title="Classe base de todos os componentes Nextion." alt="" coords="5,5,96,32"/>
+</map>

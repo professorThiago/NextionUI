@@ -1,0 +1,8 @@
+<map id="src/NexToque.cpp" name="src/NexToque.cpp">
+<area shape="rect" id="node1" title="Implementação de NexToque." alt="" coords="5,5,141,32"/>
+<area shape="rect" id="node2" href="$NexToque_8h.html" title="Componentes com suporte a eventos de toque." alt="" coords="24,80,123,107"/>
+<area shape="rect" id="node3" href="$NexObjeto_8h.html" title="Classe base de todos os componentes Nextion." alt="" coords="22,155,125,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="55,379,139,405"/>
+<area shape="rect" id="node5" href="$NexConfig_8h.html" title="Configuração global da biblioteca NextionUI." alt="" coords="47,304,148,331"/>
+<area shape="rect" id="node6" href="$NexHardware_8h.html" title="Camada de hardware da biblioteca NextionUI." alt="" coords="111,229,233,256"/>
+</map>

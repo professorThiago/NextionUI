@@ -1,0 +1,5 @@
+<map id="NexHotspot" name="NexHotspot">
+<area shape="rect" id="node1" title="Área de toque invisível do Nextion." alt="" coords="5,155,104,181"/>
+<area shape="rect" id="node2" href="$classNexToque.html" title="Classe base para componentes com eventos de toque." alt="" coords="11,80,98,107"/>
+<area shape="rect" id="node3" href="$classNexObjeto.html" title="Classe base de todos os componentes Nextion." alt="" coords="9,5,100,32"/>
+</map>

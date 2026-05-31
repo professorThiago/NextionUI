@@ -1,0 +1,5 @@
+<map id="NexTextoDeslizante" name="NexTextoDeslizante">
+<area shape="rect" id="node1" title="Componente de texto com rolagem automática do Nextion." alt="" coords="5,155,157,181"/>
+<area shape="rect" id="node2" href="$classNexToque.html" title="Classe base para componentes com eventos de toque." alt="" coords="38,80,125,107"/>
+<area shape="rect" id="node3" href="$classNexObjeto.html" title="Classe base de todos os componentes Nextion." alt="" coords="36,5,127,32"/>
+</map>

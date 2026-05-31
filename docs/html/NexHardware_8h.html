@@ -1,0 +1,587 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NextionUI: Referência ao ficheiro src/NexHardware.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">NextionUI
+   &#160;<span id="projectnumber">1.0.0</span>
+   </div>
+   <div id="projectbrief">Biblioteca moderna para displays Nextion no ESP32</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('NexHardware_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle">
+<div class="title">Referência ao ficheiro NexHardware.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Camada de hardware da biblioteca NextionUI.  
+<a href="#details">Mais...</a></p>
+<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="NexConfig_8h_source.html">NexConfig.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Diagrama de dependências de inclusão para NexHardware.h:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="NexHardware_8h__incl.svg" width="179" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Este grafo mostra quais são os ficheiros que incluem directamente ou indirectamente este ficheiro:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="NexHardware_8h__dep__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+</div>
+<p><a href="NexHardware_8h_source.html">Ir para o código fonte deste ficheiro.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:aa808112ddb23f7cfa5422cd8521aac73"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NexHardware_8h.html#aa808112ddb23f7cfa5422cd8521aac73">NEX_RET_CMD_OK</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memdesc:aa808112ddb23f7cfa5422cd8521aac73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comando executado com sucesso.  <a href="NexHardware_8h.html#aa808112ddb23f7cfa5422cd8521aac73">Mais...</a><br /></td></tr>
+<tr class="separator:aa808112ddb23f7cfa5422cd8521aac73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3cf3ae633f61baf46503c1865b22948"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NexHardware_8h.html#ad3cf3ae633f61baf46503c1865b22948">NEX_RET_INICIALIZADO</a>&#160;&#160;&#160;0x88</td></tr>
+<tr class="memdesc:ad3cf3ae633f61baf46503c1865b22948"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nextion inicializou (enviado no boot).  <a href="NexHardware_8h.html#ad3cf3ae633f61baf46503c1865b22948">Mais...</a><br /></td></tr>
+<tr class="separator:ad3cf3ae633f61baf46503c1865b22948"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9af9412b4357d6e1f337a02c697b2b91"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NexHardware_8h.html#a9af9412b4357d6e1f337a02c697b2b91">NEX_RET_MUDANCA_PAGINA</a>&#160;&#160;&#160;0x66</td></tr>
+<tr class="memdesc:a9af9412b4357d6e1f337a02c697b2b91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cabeçalho de mudança de página.  <a href="NexHardware_8h.html#a9af9412b4357d6e1f337a02c697b2b91">Mais...</a><br /></td></tr>
+<tr class="separator:a9af9412b4357d6e1f337a02c697b2b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63cd2a6ed66c8893b6421bdb87f6e164"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NexHardware_8h.html#a63cd2a6ed66c8893b6421bdb87f6e164">NEX_RET_NUMERO</a>&#160;&#160;&#160;0x71</td></tr>
+<tr class="memdesc:a63cd2a6ed66c8893b6421bdb87f6e164"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cabeçalho de retorno de número.  <a href="NexHardware_8h.html#a63cd2a6ed66c8893b6421bdb87f6e164">Mais...</a><br /></td></tr>
+<tr class="separator:a63cd2a6ed66c8893b6421bdb87f6e164"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac74bb6eaabb6eba798745ee921180c23"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NexHardware_8h.html#ac74bb6eaabb6eba798745ee921180c23">NEX_RET_STRING</a>&#160;&#160;&#160;0x70</td></tr>
+<tr class="memdesc:ac74bb6eaabb6eba798745ee921180c23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cabeçalho de retorno de string.  <a href="NexHardware_8h.html#ac74bb6eaabb6eba798745ee921180c23">Mais...</a><br /></td></tr>
+<tr class="separator:ac74bb6eaabb6eba798745ee921180c23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb319d3d70e7e4d6abbb7ff9ac0abc51"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NexHardware_8h.html#adb319d3d70e7e4d6abbb7ff9ac0abc51">NEX_RET_TOQUE</a>&#160;&#160;&#160;0x65</td></tr>
+<tr class="memdesc:adb319d3d70e7e4d6abbb7ff9ac0abc51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cabeçalho de evento de toque.  <a href="NexHardware_8h.html#adb319d3d70e7e4d6abbb7ff9ac0abc51">Mais...</a><br /></td></tr>
+<tr class="separator:adb319d3d70e7e4d6abbb7ff9ac0abc51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:a5a5ec1826b7455fc22975cc25b0d6015"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NexHardware_8h.html#a5a5ec1826b7455fc22975cc25b0d6015">nexAguardarOk</a> (uint32_t timeout=100)</td></tr>
+<tr class="memdesc:a5a5ec1826b7455fc22975cc25b0d6015"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aguarda e valida a confirmação de execução de comando.  <a href="NexHardware_8h.html#a5a5ec1826b7455fc22975cc25b0d6015">Mais...</a><br /></td></tr>
+<tr class="separator:a5a5ec1826b7455fc22975cc25b0d6015"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a034fa37b222cecf2e18859b9a1a330be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NexHardware_8h.html#a034fa37b222cecf2e18859b9a1a330be">nexEncerrar</a> ()</td></tr>
+<tr class="memdesc:a034fa37b222cecf2e18859b9a1a330be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encerra a comunicação serial com o Nextion.  <a href="NexHardware_8h.html#a034fa37b222cecf2e18859b9a1a330be">Mais...</a><br /></td></tr>
+<tr class="separator:a034fa37b222cecf2e18859b9a1a330be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60f7e0f15f693ced0345afe2017e1f76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NexHardware_8h.html#a60f7e0f15f693ced0345afe2017e1f76">nexEnviarCmd</a> (const char *cmd)</td></tr>
+<tr class="memdesc:a60f7e0f15f693ced0345afe2017e1f76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Envia um comando ao Nextion seguido do terminador 0xFF 0xFF 0xFF.  <a href="NexHardware_8h.html#a60f7e0f15f693ced0345afe2017e1f76">Mais...</a><br /></td></tr>
+<tr class="separator:a60f7e0f15f693ced0345afe2017e1f76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84f62777b926e7f5b56ef3e4698173ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NexHardware_8h.html#a84f62777b926e7f5b56ef3e4698173ae">nexEnviarCmdF</a> (const char *fmt,...)</td></tr>
+<tr class="memdesc:a84f62777b926e7f5b56ef3e4698173ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Envia um comando formatado (estilo printf) ao Nextion.  <a href="NexHardware_8h.html#a84f62777b926e7f5b56ef3e4698173ae">Mais...</a><br /></td></tr>
+<tr class="separator:a84f62777b926e7f5b56ef3e4698173ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa25fa6b0d093841513c6ee911023bc4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NexHardware_8h.html#afa25fa6b0d093841513c6ee911023bc4">nexIniciar</a> (uint32_t baudrate=9600, int8_t pinoRX=-1, int8_t pinoTX=-1, HardwareSerial *serial=&amp;Serial1)</td></tr>
+<tr class="memdesc:afa25fa6b0d093841513c6ee911023bc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa a comunicação serial com o display Nextion.  <a href="NexHardware_8h.html#afa25fa6b0d093841513c6ee911023bc4">Mais...</a><br /></td></tr>
+<tr class="separator:afa25fa6b0d093841513c6ee911023bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cea323c6c9f6a817f56d711285e75b8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NexHardware_8h.html#a6cea323c6c9f6a817f56d711285e75b8">nexLerNumero</a> (uint32_t *numero, uint32_t timeout=100)</td></tr>
+<tr class="memdesc:a6cea323c6c9f6a817f56d711285e75b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lê um número (uint32_t) enviado pelo Nextion.  <a href="NexHardware_8h.html#a6cea323c6c9f6a817f56d711285e75b8">Mais...</a><br /></td></tr>
+<tr class="separator:a6cea323c6c9f6a817f56d711285e75b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02360414e3e84efb025c4c131fb9305e"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NexHardware_8h.html#a02360414e3e84efb025c4c131fb9305e">nexLerString</a> (char *buffer, uint16_t tamanho, uint32_t timeout=100)</td></tr>
+<tr class="memdesc:a02360414e3e84efb025c4c131fb9305e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lê uma string enviada pelo Nextion.  <a href="NexHardware_8h.html#a02360414e3e84efb025c4c131fb9305e">Mais...</a><br /></td></tr>
+<tr class="separator:a02360414e3e84efb025c4c131fb9305e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a200067bf2bf512d2cccb8a2490c2e666"><td class="memItemLeft" align="right" valign="top">HardwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NexHardware_8h.html#a200067bf2bf512d2cccb8a2490c2e666">nexSerial</a> ()</td></tr>
+<tr class="memdesc:a200067bf2bf512d2cccb8a2490c2e666"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna o ponteiro para a porta serial ativa do Nextion.  <a href="NexHardware_8h.html#a200067bf2bf512d2cccb8a2490c2e666">Mais...</a><br /></td></tr>
+<tr class="separator:a200067bf2bf512d2cccb8a2490c2e666"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Camada de hardware da biblioteca NextionUI. </p>
+<p>Gerencia a comunicação serial com o display Nextion. Todos os envios e recepções passam por esta camada.</p>
+<h3><a class="anchor" id="autotoc_md8"></a>
+Por que buffer fixo em vez de String?</h3>
+<p>A classe <code>String</code> do Arduino aloca memória no heap dinamicamente. Em sistemas embarcados, chamadas repetidas de alocação/liberação fragmentam o heap, causando comportamento imprevisível ao longo do tempo (crashes, dados corrompidos). Esta biblioteca usa um buffer estático <code>char[]</code> com <code>snprintf()</code> para eliminar completamente esse problema.</p>
+<h3><a class="anchor" id="autotoc_md9"></a>
+Protocolo Nextion</h3>
+<p>Todo comando é terminado com três bytes <code>0xFF</code>: </p><div class="fragment"><div class="line"><span class="stringliteral">&quot;t0.txt=\&quot;Olá\&quot;&quot;</span>  0xFF  0xFF  0xFF</div>
+</div><!-- fragment --><p>Todo retorno de dados também termina com três bytes <code>0xFF</code>.</p>
+<dl class="section author"><dt>Autor</dt><dd>professorThiago </dd></dl>
+<dl class="section version"><dt>Versão</dt><dd>1.0.0 @license MIT </dd></dl>
+</div><h2 class="groupheader">Documentação das macros</h2>
+<a id="aa808112ddb23f7cfa5422cd8521aac73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa808112ddb23f7cfa5422cd8521aac73">&#9670;&nbsp;</a></span>NEX_RET_CMD_OK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NEX_RET_CMD_OK&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Comando executado com sucesso. </p>
+
+</div>
+</div>
+<a id="ad3cf3ae633f61baf46503c1865b22948"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3cf3ae633f61baf46503c1865b22948">&#9670;&nbsp;</a></span>NEX_RET_INICIALIZADO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NEX_RET_INICIALIZADO&#160;&#160;&#160;0x88</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Nextion inicializou (enviado no boot). </p>
+
+</div>
+</div>
+<a id="a9af9412b4357d6e1f337a02c697b2b91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9af9412b4357d6e1f337a02c697b2b91">&#9670;&nbsp;</a></span>NEX_RET_MUDANCA_PAGINA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NEX_RET_MUDANCA_PAGINA&#160;&#160;&#160;0x66</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cabeçalho de mudança de página. </p>
+
+</div>
+</div>
+<a id="a63cd2a6ed66c8893b6421bdb87f6e164"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63cd2a6ed66c8893b6421bdb87f6e164">&#9670;&nbsp;</a></span>NEX_RET_NUMERO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NEX_RET_NUMERO&#160;&#160;&#160;0x71</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cabeçalho de retorno de número. </p>
+
+</div>
+</div>
+<a id="ac74bb6eaabb6eba798745ee921180c23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac74bb6eaabb6eba798745ee921180c23">&#9670;&nbsp;</a></span>NEX_RET_STRING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NEX_RET_STRING&#160;&#160;&#160;0x70</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cabeçalho de retorno de string. </p>
+
+</div>
+</div>
+<a id="adb319d3d70e7e4d6abbb7ff9ac0abc51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb319d3d70e7e4d6abbb7ff9ac0abc51">&#9670;&nbsp;</a></span>NEX_RET_TOQUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NEX_RET_TOQUE&#160;&#160;&#160;0x65</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cabeçalho de evento de toque. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação das funções</h2>
+<a id="a5a5ec1826b7455fc22975cc25b0d6015"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a5ec1826b7455fc22975cc25b0d6015">&#9670;&nbsp;</a></span>nexAguardarOk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool nexAguardarOk </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>timeout</em> = <code>100</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Aguarda e valida a confirmação de execução de comando. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timeout</td><td>Tempo máximo de espera em milissegundos.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>true se recebeu <code>0x01 0xFF 0xFF 0xFF</code> (comando OK). </dd>
+<dd>
+false se timeout ou código de erro.</dd></dl>
+<dl class="section note"><dt>Nota</dt><dd>Só tem efeito quando <code>NEX_AGUARDAR_CONFIRMACAO = 1</code>. Com <code>= 0</code> (padrão) retorna sempre <code>true</code> imediatamente. </dd></dl>
+
+</div>
+</div>
+<a id="a034fa37b222cecf2e18859b9a1a330be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a034fa37b222cecf2e18859b9a1a330be">&#9670;&nbsp;</a></span>nexEncerrar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nexEncerrar </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Encerra a comunicação serial com o Nextion. </p>
+
+</div>
+</div>
+<a id="a60f7e0f15f693ced0345afe2017e1f76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60f7e0f15f693ced0345afe2017e1f76">&#9670;&nbsp;</a></span>nexEnviarCmd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nexEnviarCmd </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>cmd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Envia um comando ao Nextion seguido do terminador 0xFF 0xFF 0xFF. </p>
+<p>Descarta qualquer dado pendente no buffer de entrada antes de enviar, garantindo que a resposta seguinte pertença a este comando.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>String de comando terminada em <code>\0</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Exemplo</dt><dd><div class="fragment"><div class="line"><a class="code" href="NexHardware_8cpp.html#a60f7e0f15f693ced0345afe2017e1f76">nexEnviarCmd</a>(<span class="stringliteral">&quot;page p1_dash&quot;</span>);</div>
+<div class="line"><a class="code" href="NexHardware_8cpp.html#a60f7e0f15f693ced0345afe2017e1f76">nexEnviarCmd</a>(<span class="stringliteral">&quot;t0.txt=\&quot;Olá\&quot;&quot;</span>);</div>
+<div class="ttc" id="aNexHardware_8cpp_html_a60f7e0f15f693ced0345afe2017e1f76"><div class="ttname"><a href="NexHardware_8cpp.html#a60f7e0f15f693ced0345afe2017e1f76">nexEnviarCmd</a></div><div class="ttdeci">void nexEnviarCmd(const char *cmd)</div><div class="ttdoc">Envia um comando ao Nextion seguido do terminador 0xFF 0xFF 0xFF.</div><div class="ttdef"><b>Definition:</b> NexHardware.cpp:81</div></div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="a84f62777b926e7f5b56ef3e4698173ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84f62777b926e7f5b56ef3e4698173ae">&#9670;&nbsp;</a></span>nexEnviarCmdF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nexEnviarCmdF </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Envia um comando formatado (estilo printf) ao Nextion. </p>
+<p>Equivalente a <code>snprintf</code> + <code>nexEnviarCmd</code>. Usa o buffer interno fixo de <code>NEX_BUFFER_CMD</code> bytes — sem alocação no heap.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fmt</td><td>String de formato (igual a <code>printf</code>). </td></tr>
+    <tr><td class="paramname">...</td><td>Argumentos de formatação.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section user"><dt>Exemplo</dt><dd><div class="fragment"><div class="line"><a class="code" href="NexHardware_8cpp.html#a84f62777b926e7f5b56ef3e4698173ae">nexEnviarCmdF</a>(<span class="stringliteral">&quot;t0.txt=\&quot;%d°C\&quot;&quot;</span>, temperatura);</div>
+<div class="line"><a class="code" href="NexHardware_8cpp.html#a84f62777b926e7f5b56ef3e4698173ae">nexEnviarCmdF</a>(<span class="stringliteral">&quot;%s.bco=%lu&quot;</span>, nomeComponente, corFundo);</div>
+<div class="line"><a class="code" href="NexHardware_8cpp.html#a84f62777b926e7f5b56ef3e4698173ae">nexEnviarCmdF</a>(<span class="stringliteral">&quot;page %d&quot;</span>, indicePagina);</div>
+<div class="ttc" id="aNexHardware_8cpp_html_a84f62777b926e7f5b56ef3e4698173ae"><div class="ttname"><a href="NexHardware_8cpp.html#a84f62777b926e7f5b56ef3e4698173ae">nexEnviarCmdF</a></div><div class="ttdeci">void nexEnviarCmdF(const char *fmt,...)</div><div class="ttdoc">Envia um comando formatado (estilo printf) ao Nextion.</div><div class="ttdef"><b>Definition:</b> NexHardware.cpp:94</div></div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="afa25fa6b0d093841513c6ee911023bc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa25fa6b0d093841513c6ee911023bc4">&#9670;&nbsp;</a></span>nexIniciar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool nexIniciar </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baudrate</em> = <code>9600</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int8_t&#160;</td>
+          <td class="paramname"><em>pinoRX</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int8_t&#160;</td>
+          <td class="paramname"><em>pinoTX</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HardwareSerial *&#160;</td>
+          <td class="paramname"><em>serial</em> = <code>&amp;Serial1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inicializa a comunicação serial com o display Nextion. </p>
+<p>Configura a porta serial, envia comandos iniciais (<code>bkcmd=0</code> para suprimir retornos desnecessários) e aguarda o display estabilizar.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">baudrate</td><td>Velocidade da comunicação. Padrão: 9600. Recomendado: 115200 para melhor desempenho. </td></tr>
+    <tr><td class="paramname">pinoRX</td><td>Pino RX do ESP32 (recebe dados do Nextion TX). Use -1 para o padrão da porta serial escolhida. </td></tr>
+    <tr><td class="paramname">pinoTX</td><td>Pino TX do ESP32 (envia dados para o Nextion RX). Use -1 para o padrão da porta serial escolhida. </td></tr>
+    <tr><td class="paramname">serial</td><td>Ponteiro para a porta serial a usar. Padrão: <code>&amp;Serial1</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>true se inicializado com sucesso. </dd>
+<dd>
+false se falhou (porta serial inválida).</dd></dl>
+<dl class="section user"><dt>Exemplo (ESP32 com pinos customizados)</dt><dd><div class="fragment"><div class="line"><span class="comment">// GPIO16 = RX do ESP32 (liga no TX do Nextion)</span></div>
+<div class="line"><span class="comment">// GPIO17 = TX do ESP32 (liga no RX do Nextion)</span></div>
+<div class="line"><a class="code" href="NexHardware_8cpp.html#a2d8933fe632092fccd1f0e5f3086df62">nexIniciar</a>(115200, 16, 17, &amp;Serial2);</div>
+<div class="ttc" id="aNexHardware_8cpp_html_a2d8933fe632092fccd1f0e5f3086df62"><div class="ttname"><a href="NexHardware_8cpp.html#a2d8933fe632092fccd1f0e5f3086df62">nexIniciar</a></div><div class="ttdeci">bool nexIniciar(uint32_t baudrate, int8_t pinoRX, int8_t pinoTX, HardwareSerial *serial)</div><div class="ttdoc">Inicializa a comunicação serial com o display Nextion.</div><div class="ttdef"><b>Definition:</b> NexHardware.cpp:29</div></div>
+</div><!-- fragment --></dd></dl>
+<dl class="section user"><dt>Exemplo (padrão Serial1)</dt><dd><div class="fragment"><div class="line"><a class="code" href="NexHardware_8cpp.html#a2d8933fe632092fccd1f0e5f3086df62">nexIniciar</a>(9600);</div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="a6cea323c6c9f6a817f56d711285e75b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cea323c6c9f6a817f56d711285e75b8">&#9670;&nbsp;</a></span>nexLerNumero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool nexLerNumero </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>numero</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>timeout</em> = <code>100</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lê um número (uint32_t) enviado pelo Nextion. </p>
+<p>Formato esperado do Nextion: <code>0x71 &lt;b0&gt; &lt;b1&gt; &lt;b2&gt; &lt;b3&gt; 0xFF 0xFF 0xFF</code> (little-endian, 4 bytes).</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">numero</td><td>Ponteiro onde o número lido será armazenado. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">timeout</td><td>Timeout em ms.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>true se lido com sucesso. </dd>
+<dd>
+false se timeout ou formato inválido.</dd></dl>
+<dl class="section user"><dt>Exemplo</dt><dd><div class="fragment"><div class="line">uint32_t val;</div>
+<div class="line"><a class="code" href="NexHardware_8cpp.html#a60f7e0f15f693ced0345afe2017e1f76">nexEnviarCmd</a>(<span class="stringliteral">&quot;get n0.val&quot;</span>);</div>
+<div class="line"><span class="keywordflow">if</span> (<a class="code" href="NexHardware_8cpp.html#a4e0a7fbd3305bd5e693d289b274b70f4">nexLerNumero</a>(&amp;val)) {</div>
+<div class="line">    Serial.println(val);</div>
+<div class="line">}</div>
+<div class="ttc" id="aNexHardware_8cpp_html_a4e0a7fbd3305bd5e693d289b274b70f4"><div class="ttname"><a href="NexHardware_8cpp.html#a4e0a7fbd3305bd5e693d289b274b70f4">nexLerNumero</a></div><div class="ttdeci">bool nexLerNumero(uint32_t *numero, uint32_t timeout)</div><div class="ttdoc">Lê um número (uint32_t) enviado pelo Nextion.</div><div class="ttdef"><b>Definition:</b> NexHardware.cpp:127</div></div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="a02360414e3e84efb025c4c131fb9305e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02360414e3e84efb025c4c131fb9305e">&#9670;&nbsp;</a></span>nexLerString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t nexLerString </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>tamanho</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>timeout</em> = <code>100</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lê uma string enviada pelo Nextion. </p>
+<p>Formato esperado: <code>0x70 &lt;chars...&gt; 0xFF 0xFF 0xFF</code>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>Buffer destino. </td></tr>
+    <tr><td class="paramname">tamanho</td><td>Tamanho máximo do buffer (incluindo <code>\0</code>). </td></tr>
+    <tr><td class="paramname">timeout</td><td>Timeout em ms.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Comprimento da string lida (sem o <code>\0</code>).</dd></dl>
+<dl class="section user"><dt>Exemplo</dt><dd><div class="fragment"><div class="line"><span class="keywordtype">char</span> texto[32];</div>
+<div class="line"><a class="code" href="NexHardware_8cpp.html#a60f7e0f15f693ced0345afe2017e1f76">nexEnviarCmd</a>(<span class="stringliteral">&quot;get t0.txt&quot;</span>);</div>
+<div class="line">uint16_t len = <a class="code" href="NexHardware_8cpp.html#a37a69ac14fc37afe07fe78ab94dc2a77">nexLerString</a>(texto, <span class="keyword">sizeof</span>(texto));</div>
+<div class="line">Serial.println(texto);</div>
+<div class="ttc" id="aNexHardware_8cpp_html_a37a69ac14fc37afe07fe78ab94dc2a77"><div class="ttname"><a href="NexHardware_8cpp.html#a37a69ac14fc37afe07fe78ab94dc2a77">nexLerString</a></div><div class="ttdeci">uint16_t nexLerString(char *buffer, uint16_t tamanho, uint32_t timeout)</div><div class="ttdoc">Lê uma string enviada pelo Nextion.</div><div class="ttdef"><b>Definition:</b> NexHardware.cpp:155</div></div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="a200067bf2bf512d2cccb8a2490c2e666"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a200067bf2bf512d2cccb8a2490c2e666">&#9670;&nbsp;</a></span>nexSerial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">HardwareSerial* nexSerial </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retorna o ponteiro para a porta serial ativa do Nextion. </p>
+<p>Útil quando é necessário enviar comandos brutos diretamente.</p>
+<dl class="section return"><dt>Retorna</dt><dd>Ponteiro para HardwareSerial. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="NexHardware_8h.html">NexHardware.h</a></li>
+    <li class="footer">Gerado em Domingo, 31 de Maio de 2026 11:04:36 para NextionUI por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

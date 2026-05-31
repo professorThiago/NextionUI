@@ -1,0 +1,6 @@
+<map id="src/NexComponentes.h" name="src/NexComponentes.h">
+<area shape="rect" id="node1" title="Todos os componentes Nextion com API em português." alt="" coords="98,5,271,32"/>
+<area shape="rect" id="node2" href="$NexDisplay_8h.html" title="Ponto de entrada único para o display Nextion." alt="" coords="69,80,199,107"/>
+<area shape="rect" id="node4" href="$NextionUI_8h.html" title="Ponto único de inclusão da biblioteca NextionUI." alt="" coords="175,155,298,181"/>
+<area shape="rect" id="node3" href="$NexDisplay_8cpp.html" title="Implementação do NexDisplay." alt="" coords="5,155,151,181"/>
+</map>
