@@ -1,0 +1,31 @@
+{
+  "name": "NextionUI",
+  "version": "1.0.0",
+  "description": "Biblioteca moderna para displays Nextion no ESP32. API em português, sem alocações dinâmicas, integração com DebugManager, NexDisplay como ponto de entrada único, fluent interface e Doxygen completo.",
+  "keywords": [
+    "nextion", "display", "HMI", "touch", "serial", "ESP32", "interface"
+  ],
+  "authors": [
+    {
+      "name": "professorThiago",
+      "url": "https://github.com/professorThiago"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/professorThiago/NextionUI"
+  },
+  "license": "MIT",
+  "frameworks": "arduino",
+  "platforms": ["espressif32", "espressif8266", "atmelavr"],
+  "headers": "NextionUI.h",
+  "build": { "srcDir": "src" },
+  "examples": [
+    { "name": "01_OlaMundo",           "base": "examples/01_OlaMundo",           "files": ["01_OlaMundo.ino"] },
+    { "name": "02_BotaoCallback",      "base": "examples/02_BotaoCallback",      "files": ["02_BotaoCallback.ino"] },
+    { "name": "03_AtualizarComponentes","base": "examples/03_AtualizarComponentes","files": ["03_AtualizarComponentes.ino"] },
+    { "name": "04_NexDisplay",         "base": "examples/04_NexDisplay",         "files": ["04_NexDisplay.ino"] },
+    { "name": "05_MixCompleto",        "base": "examples/05_MixCompleto",        "files": ["05_MixCompleto.ino"] },
+    { "name": "06_DebugManager",       "base": "examples/06_DebugManager",       "files": ["06_DebugManager.ino"] }
+  ]
+}

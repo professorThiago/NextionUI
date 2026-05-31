@@ -1,0 +1,82 @@
+# Doxyfile — NextionUI
+# Gera documentação HTML completa em português
+# Execute: doxygen Doxyfile
+
+#---------------------------------------------------------------------------
+# Projeto
+#---------------------------------------------------------------------------
+PROJECT_NAME           = "NextionUI"
+PROJECT_NUMBER         = "1.0.0"
+PROJECT_BRIEF          = "Biblioteca moderna para displays Nextion no ESP32"
+OUTPUT_DIRECTORY       = docs
+OUTPUT_LANGUAGE        = Portuguese
+CREATE_SUBDIRS         = NO
+
+#---------------------------------------------------------------------------
+# Entrada
+#---------------------------------------------------------------------------
+INPUT                  = src README.md
+FILE_PATTERNS          = *.h *.cpp *.md
+RECURSIVE              = NO
+USE_MDFILE_AS_MAINPAGE = README.md
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+
+#---------------------------------------------------------------------------
+# HTML
+#---------------------------------------------------------------------------
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_COLORSTYLE_HUE    = 210
+HTML_COLORSTYLE_SAT    = 100
+HTML_COLORSTYLE_GAMMA  = 80
+HTML_TIMESTAMP         = YES
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = YES
+
+#---------------------------------------------------------------------------
+# Gráficos de herança (requer Graphviz)
+#---------------------------------------------------------------------------
+HAVE_DOT               = YES
+CLASS_DIAGRAMS         = YES
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES
+DOT_CLEANUP            = YES
+
+#---------------------------------------------------------------------------
+# LaTeX / PDF (desativado — use HTML)
+#---------------------------------------------------------------------------
+GENERATE_LATEX         = NO
+
+#---------------------------------------------------------------------------
+# Qualidade da documentação
+#---------------------------------------------------------------------------
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = NO
+SORT_MEMBER_DOCS       = YES
+SORT_BRIEF_DOCS        = YES
+SHOW_INCLUDE_FILES     = YES
+SHOW_USED_FILES        = YES
+INLINE_INHERITED_MEMB  = YES
+INHERIT_DOCS           = YES
+
+#---------------------------------------------------------------------------
+# Preprocessador
+#---------------------------------------------------------------------------
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = NO
+PREDEFINED             = ARDUINO ESP32
+
+#---------------------------------------------------------------------------
+# Índice
+#---------------------------------------------------------------------------
+ALPHABETICAL_INDEX     = YES
+COLS_IN_ALPHA_INDEX    = 3
