@@ -3,11 +3,17 @@
  * @brief Implementação do protocolo de upload Nextion via serial.
  *
  * @author  professorThiago (https://github.com/professorThiago)
- * @version 1.0.0
+ * @version 1.1.0
  * @license MIT
  */
 
 #include "NexAtualizador.h"
+
+// ── Bauds para auto-detecção (mesma ordem do Nextion Editor) ──────────────
+static const uint32_t _BAUDS_TESTE[] = {
+    9600, 115200, 19200, 38400, 57600, 230400, 4800, 512000, 921600, 2400
+};
+static const uint8_t _NUM_BAUDS = sizeof(_BAUDS_TESTE) / sizeof(_BAUDS_TESTE[0]);
 
 // =============================================================================
 // Construtor
@@ -32,35 +38,33 @@ bool NexAtualizador::atualizar(Stream& fonte, uint32_t tamanho)
 
     debugInfo("[NexOTA] Iniciando upload — " + String(tamanho) + " bytes");
 
-    // ── Passo 1: Enviar comando de upload na baud de operação ─────────────
+    // ── Passo 1: Auto-detectar baud e enviar comando de upload ────────
     if (!_iniciarProtocolo(tamanho)) {
         return false;
     }
 
-    // ── Passo 2: Trocar para baud de upload ───────────────────────────────
-    if (_baudUpload != _baudOperacao) {
-        debugVerbose("[NexOTA] Trocando baud: " + String(_baudOperacao) +
+    // ── Passo 2: Trocar para baud de upload ───────────────────────────
+    if (_baudUpload != _baudDetectada) {
+        debugVerbose("[NexOTA] Trocando baud: " + String(_baudDetectada) +
                      " -> " + String(_baudUpload));
         _serial.flush();
-        delay(50);
+        delay(500);
         _serial.updateBaudRate(_baudUpload);
-        delay(50);
+        delay(500);
     }
 
-    // ── Passo 3: Enviar dados em blocos ───────────────────────────────────
+    // ── Passo 3: Enviar dados em blocos ───────────────────────────────
     uint8_t bloco[NEX_UPLOAD_TAMANHO_BLOCO];
     uint32_t enviados = 0;
     uint32_t blocoNum = 0;
     uint8_t ultimoPct = 255;
 
     while (enviados < tamanho) {
-        // Calcula tamanho deste bloco
         uint32_t restante = tamanho - enviados;
         size_t tamBloco = (restante < NEX_UPLOAD_TAMANHO_BLOCO)
                           ? restante
                           : NEX_UPLOAD_TAMANHO_BLOCO;
 
-        // Lê da fonte
         size_t lido = fonte.readBytes(bloco, tamBloco);
 
         if (lido == 0) {
@@ -69,7 +73,6 @@ bool NexAtualizador::atualizar(Stream& fonte, uint32_t tamanho)
             return false;
         }
 
-        // Envia o bloco
         if (!_enviarBloco(bloco, lido)) {
             return false;
         }
@@ -77,7 +80,6 @@ bool NexAtualizador::atualizar(Stream& fonte, uint32_t tamanho)
         enviados += lido;
         blocoNum++;
 
-        // Callback de progresso
         uint8_t pct = (uint8_t)((enviados * 100UL) / tamanho);
         if (pct != ultimoPct) {
             ultimoPct = pct;
@@ -87,20 +89,16 @@ bool NexAtualizador::atualizar(Stream& fonte, uint32_t tamanho)
         }
     }
 
-    // ── Passo 4: Upload concluído — Nextion reinicia automaticamente ──────
+    // ── Passo 4: Concluído — Nextion reinicia automaticamente ─────────
     debugInfo("[NexOTA] Upload concluido! " + String(blocoNum) +
              " blocos enviados. Nextion reiniciando...");
 
     // Restaura baud de operação para quando o Nextion voltar
-    if (_baudUpload != _baudOperacao) {
-        _serial.flush();
-        delay(100);
-        _serial.updateBaudRate(_baudOperacao);
-    }
+    _serial.flush();
+    delay(500);
+    _serial.updateBaudRate(_baudDetectada);
 
-    // Aguarda o Nextion reiniciar (~2-5 segundos dependendo do modelo)
     delay(3000);
-
     return true;
 }
 
@@ -119,20 +117,17 @@ bool NexAtualizador::atualizar(const uint8_t* dados, uint32_t tamanho)
     debugInfo("[NexOTA] Iniciando upload de buffer — " +
              String(tamanho) + " bytes");
 
-    // ── Passo 1: Iniciar protocolo ────────────────────────────────────────
     if (!_iniciarProtocolo(tamanho)) {
         return false;
     }
 
-    // ── Passo 2: Trocar baud ──────────────────────────────────────────────
-    if (_baudUpload != _baudOperacao) {
+    if (_baudUpload != _baudDetectada) {
         _serial.flush();
-        delay(50);
+        delay(500);
         _serial.updateBaudRate(_baudUpload);
-        delay(50);
+        delay(500);
     }
 
-    // ── Passo 3: Enviar em blocos ─────────────────────────────────────────
     uint32_t enviados = 0;
     uint8_t ultimoPct = 255;
 
@@ -155,83 +150,114 @@ bool NexAtualizador::atualizar(const uint8_t* dados, uint32_t tamanho)
         }
     }
 
-    // ── Passo 4: Concluído ────────────────────────────────────────────────
     debugInfo("[NexOTA] Upload de buffer concluido!");
 
-    if (_baudUpload != _baudOperacao) {
-        _serial.flush();
-        delay(100);
-        _serial.updateBaudRate(_baudOperacao);
-    }
+    _serial.flush();
+    delay(500);
+    _serial.updateBaudRate(_baudDetectada);
 
     delay(3000);
     return true;
 }
 
 // =============================================================================
-// _iniciarProtocolo — handshake com o Nextion
+// _detectarBaud — testa várias velocidades até o display responder
+// =============================================================================
+
+bool NexAtualizador::_detectarBaud()
+{
+    debugInfo("[NexOTA] Auto-detectando baud rate do display...");
+
+    for (uint8_t i = 0; i < _NUM_BAUDS; i++) {
+        uint32_t baud = _BAUDS_TESTE[i];
+
+        _serial.updateBaudRate(baud);
+        delay(100);
+        _limparBuffer();
+
+        // Envia string vazia para acordar o parser
+        _enviarComandoNex("");
+        delay(50);
+        _limparBuffer();
+
+        // Envia connect e verifica resposta
+        _enviarComandoNex("connect");
+        delay(150);
+
+        if (_serial.available() > 0) {
+            // Lê a resposta para confirmar que é válida
+            String resp = "";
+            while (_serial.available()) {
+                char c = _serial.read();
+                if (c >= 0x20 && c < 0x7F) resp += c;
+            }
+
+            debugInfo("[NexOTA] Display encontrado em " + String(baud) +
+                      " baud (resposta: " + resp + ")");
+            _baudDetectada = baud;
+            return true;
+        }
+
+        debugVerbose("[NexOTA] Sem resposta em " + String(baud));
+    }
+
+    debugErro("[NexOTA] Display nao encontrado em nenhuma velocidade");
+    return false;
+}
+
+// =============================================================================
+// _iniciarProtocolo — auto-detecção + handshake com o Nextion
 // =============================================================================
 
 bool NexAtualizador::_iniciarProtocolo(uint32_t tamanho)
 {
-    // Garante que a serial está na baud de operação
-    _serial.updateBaudRate(_baudOperacao);
-    delay(100);
+    // ── Passo 1: Auto-detectar baud rate atual do display ─────────────
+    if (!_detectarBaud()) {
+        _reportarErro(ErroNexUpload::TIMEOUT_CONEXAO,
+                      "Display nao encontrado — verifique conexao");
+        return false;
+    }
 
-    // Limpa buffer serial
+    // ── Passo 2: Garantir que estamos na baud detectada ───────────────
+    _serial.updateBaudRate(_baudDetectada);
+    delay(100);
     _limparBuffer();
 
-    // ── Tentativa 1: Conectar ao display ──────────────────────────────────
-    // Envia string vazia para acordar o parser de comandos
-    debugVerbose("[NexOTA] Conectando ao display...");
+    // ── Passo 3: Preparar display para upload ─────────────────────────
+    // Enviar comandos vazios para garantir estado limpo
+    _enviarComandoNex("");
+    delay(100);
     _enviarComandoNex("");
     delay(100);
     _limparBuffer();
 
-    // Envia o comando 'connect' para verificar se o display responde
-    _enviarComandoNex("connect");
-    delay(100);
-
-    // Lê resposta (pode ser "comok..." ou lixo — o importante é que respondeu)
-    bool conectado = _serial.available() > 0;
-    _limparBuffer();
-
-    if (!conectado) {
-        // Tenta mais uma vez
-        debugAviso("[NexOTA] Sem resposta — tentando novamente...");
-        _enviarComandoNex("");
-        delay(200);
-        _enviarComandoNex("connect");
-        delay(200);
-        conectado = _serial.available() > 0;
-        _limparBuffer();
-    }
-
-    if (!conectado) {
-        _reportarErro(ErroNexUpload::TIMEOUT_CONEXAO,
-                      "Display nao respondeu — verifique conexao e baud");
-        return false;
-    }
-
-    debugVerbose("[NexOTA] Display conectado.");
-
-    // ── Tentativa 2: Enviar comando de upload ─────────────────────────────
+    // ── Passo 4: Enviar comando de upload ─────────────────────────────
     // Formato: whmi-wri <tamanho>,<baud_upload>,0
     char cmd[64];
     snprintf(cmd, sizeof(cmd), "whmi-wri %lu,%lu,0",
              (unsigned long)tamanho, (unsigned long)_baudUpload);
 
-    debugVerbose("[NexOTA] Enviando: " + String(cmd));
+    debugInfo("[NexOTA] Enviando: " + String(cmd) +
+             " (na baud " + String(_baudDetectada) + ")");
+
     _enviarComandoNex(cmd);
 
-    // Aguarda 0x05 (ACK) — o Nextion pode demorar a processar
+    // ── Passo 5: Aguardar 0x05 (ACK) na baud atual ───────────────────
     if (!_aguardarAck()) {
-        _reportarErro(ErroNexUpload::SEM_RESPOSTA,
-                      "Display nao aceitou comando de upload");
-        return false;
+        // Tenta novamente com mais delay
+        debugAviso("[NexOTA] Sem ACK — tentando novamente...");
+        delay(500);
+        _limparBuffer();
+        _enviarComandoNex(cmd);
+
+        if (!_aguardarAck()) {
+            _reportarErro(ErroNexUpload::SEM_RESPOSTA,
+                          "Display nao aceitou comando de upload");
+            return false;
+        }
     }
 
-    debugVerbose("[NexOTA] Display pronto para receber dados.");
+    debugInfo("[NexOTA] Display pronto para receber dados.");
     return true;
 }
 
@@ -242,7 +268,7 @@ bool NexAtualizador::_iniciarProtocolo(uint32_t tamanho)
 bool NexAtualizador::_enviarBloco(const uint8_t* dados, size_t tamanho)
 {
     _serial.write(dados, tamanho);
-    _serial.flush(); // aguarda envio completo
+    _serial.flush();
 
     if (!_aguardarAck()) {
         _reportarErro(ErroNexUpload::BLOCO_SEM_ACK,
@@ -269,13 +295,11 @@ bool NexAtualizador::_aguardarAck()
                 return true;
             }
 
-            // Nextion pode enviar 0x08 (erro) ou outros bytes
             if (byte == 0x08) {
                 debugErro("[NexOTA] Display retornou erro (0x08)");
                 return false;
             }
 
-            // Ignora outros bytes (possível lixo no buffer)
             debugTudo("[NexOTA] Byte inesperado: 0x" +
                       String(byte, HEX));
         }

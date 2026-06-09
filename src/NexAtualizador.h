@@ -3,80 +3,34 @@
  * @brief Atualização de firmware (.tft) do display Nextion via serial.
  *
  * @details
- * Implementa o protocolo de upload do Nextion, permitindo atualizar
- * a interface do display remotamente via ESP32, sem necessidade de
- * cartão SD ou conexão USB direta ao Nextion Editor.
+ * Implementa o protocolo de upload do Nextion com auto-detecção de baud rate,
+ * permitindo atualizar a interface do display remotamente via ESP32.
  *
- * ### Fontes suportadas
+ * ### Processo de upload (igual ao Nextion Editor)
  *
- * Aceita qualquer objeto `Stream` como fonte de dados:
- * - `HTTPClient::getStream()` — download HTTP/HTTPS direto do servidor
- * - `SD.open()` — leitura de cartão SD
- * - `SPIFFS.open()` — leitura de flash interna
+ * 1. **Auto-detecção** — testa bauds (9600, 115200, 19200, ...) até o display responder
+ * 2. **Comando upload** — envia `whmi-wri <tam>,<baud>,0` na baud detectada
+ * 3. **Troca de baud** — display e ESP32 trocam para a baud de upload
+ * 4. **Transferência** — envia blocos de 4096 bytes com ACK (0x05) por bloco
+ * 5. **Reinício** — Nextion reinicia automaticamente com a nova interface
  *
- * O upload é feito por streaming — não requer RAM para o arquivo inteiro.
- * Apenas um buffer de bloco (padrão: 4096 bytes) é necessário.
- *
- * ### Protocolo Nextion Upload
- *
- * 1. ESP32 envia comando `whmi-wri <tam>,<baud>,0` na baud atual.
- * 2. Nextion responde com `0x05` e troca para a baud de upload.
- * 3. ESP32 troca para a mesma baud e envia blocos de 4096 bytes.
- * 4. Nextion responde `0x05` após cada bloco.
- * 5. Após o último bloco, o Nextion reinicia automaticamente.
- *
- * ### Uso típico — download HTTP
+ * ### Uso típico
  *
  * @code
- * #include <NexAtualizador.h>
- * #include <HTTPClient.h>
- *
  * NexAtualizador nexOta(Serial2);
  *
- * void atualizarTela(const char* url) {
- *     HTTPClient http;
- *     http.begin(url);
- *     int codigo = http.GET();
- *     if (codigo != 200) return;
+ * // Não precisa saber a baud — auto-detecta!
+ * nexOta.definirBaudUpload(115200);
  *
- *     uint32_t tamanho = http.getSize();
- *     Stream& fonte = http.getStream();
- *
- *     nexOta.aoProgresso([](uint8_t pct) {
- *         Serial.printf("Nextion: %d%%\n", pct);
- *     });
- *
- *     if (nexOta.atualizar(fonte, tamanho)) {
- *         Serial.println("Tela atualizada com sucesso!");
- *     }
- *
- *     http.end();
- * }
+ * HTTPClient http;
+ * http.begin(url);
+ * http.GET();
+ * nexOta.atualizar(*http.getStreamPtr(), http.getSize());
+ * http.end();
  * @endcode
- *
- * ### Uso típico — cartão SD
- *
- * @code
- * #include <NexAtualizador.h>
- * #include <SD.h>
- *
- * NexAtualizador nexOta(Serial2);
- *
- * void atualizarTelaSD() {
- *     File arquivo = SD.open("/interface.tft");
- *     if (!arquivo) return;
- *
- *     nexOta.atualizar(arquivo, arquivo.size());
- *     arquivo.close();
- * }
- * @endcode
- *
- * @note Durante o upload, o display exibe uma tela azul com barra de
- *       progresso nativa do Nextion. A comunicação normal (NexDisplay)
- *       fica indisponível até o Nextion reiniciar.
  *
  * @author  professorThiago (https://github.com/professorThiago)
- * @version 1.0.0
+ * @version 1.1.0
  * @date    2025
  * @license MIT
  */
@@ -104,52 +58,42 @@
 #endif
 
 // ---------------------------------------------------------------------------
-// Limites configuráveis — redefina ANTES do #include para personalizar
+// Limites configuráveis
 // ---------------------------------------------------------------------------
 
-/** @brief Tamanho do bloco de envio em bytes. Nextion usa 4096. */
 #ifndef NEX_UPLOAD_TAMANHO_BLOCO
   #define NEX_UPLOAD_TAMANHO_BLOCO  4096
 #endif
 
-/** @brief Tempo máximo de espera pela resposta 0x05 (ms). */
 #ifndef NEX_UPLOAD_TIMEOUT_MS
   #define NEX_UPLOAD_TIMEOUT_MS  5000
 #endif
 
-/** @brief Baud rate padrão para upload. 115200 é o mais confiável. */
 #ifndef NEX_UPLOAD_BAUD_PADRAO
   #define NEX_UPLOAD_BAUD_PADRAO  115200
 #endif
 
-/** @brief Byte de confirmação do Nextion. */
 #define NEX_UPLOAD_ACK  0x05
 
 // ---------------------------------------------------------------------------
 // Códigos de erro
 // ---------------------------------------------------------------------------
 
-/**
- * @brief Códigos de erro do upload Nextion.
- */
 enum class ErroNexUpload : int {
     NENHUM              =  0,
-    SEM_RESPOSTA        = -1,  ///< Nextion não respondeu ao comando de upload
-    ACK_INVALIDO        = -2,  ///< Resposta inesperada (não 0x05)
-    LEITURA_FONTE       = -3,  ///< Erro ao ler dados da fonte (Stream)
-    BLOCO_SEM_ACK       = -4,  ///< Bloco enviado mas sem confirmação
-    TAMANHO_ZERO        = -5,  ///< Tamanho do arquivo é zero
-    TIMEOUT_CONEXAO     = -6,  ///< Timeout aguardando conexão com display
+    SEM_RESPOSTA        = -1,
+    ACK_INVALIDO        = -2,
+    LEITURA_FONTE       = -3,
+    BLOCO_SEM_ACK       = -4,
+    TAMANHO_ZERO        = -5,
+    TIMEOUT_CONEXAO     = -6,
 };
 
 // ---------------------------------------------------------------------------
 // Tipos de callback
 // ---------------------------------------------------------------------------
 
-/** @brief Callback de progresso (0–100). */
 typedef void (*CallbackProgressoNex)(uint8_t porcentagem);
-
-/** @brief Callback de erro. */
 typedef void (*CallbackErroNex)(ErroNexUpload codigo, const char* mensagem);
 
 // =============================================================================
@@ -159,68 +103,39 @@ typedef void (*CallbackErroNex)(ErroNexUpload codigo, const char* mensagem);
 /**
  * @brief Atualiza o firmware (.tft) do display Nextion via serial.
  *
- * Classe independente — não requer NexDisplay. Usa apenas a
- * HardwareSerial conectada ao Nextion.
+ * Detecta automaticamente a baud rate do display (como o Nextion Editor),
+ * negocia a troca para a velocidade de upload e envia o arquivo por streaming.
  *
- * @par Exemplo completo
+ * @par Exemplo
  * @code
  * NexAtualizador nexOta(Serial2);
+ * nexOta.definirBaudUpload(115200);  // velocidade de transferência
  *
- * // Configuração (opcional — padrões funcionam para maioria dos casos)
- * nexOta.definirBaudOperacao(921600);  // baud atual do display
- * nexOta.definirBaudUpload(115200);    // baud para transferência
- *
- * // Callbacks
- * nexOta.aoProgresso([](uint8_t pct) {
- *     Serial.printf("Upload Nextion: %d%%\n", pct);
- * });
- *
- * nexOta.aoErro([](ErroNexUpload cod, const char* msg) {
- *     Serial.printf("Erro: %s\n", msg);
- * });
- *
- * // Atualizar de um Stream
- * nexOta.atualizar(fonte, tamanho);
+ * // Auto-detecta a baud do display, negocia, e envia
+ * nexOta.atualizar(httpStream, tamanho);
  * @endcode
  */
 class NexAtualizador {
 public:
-    // -----------------------------------------------------------------------
-    // Construtor
-    // -----------------------------------------------------------------------
-
     /**
      * @brief Construtor.
-     *
      * @param serial  Porta serial conectada ao Nextion (ex: `Serial2`).
      */
     explicit NexAtualizador(HardwareSerial& serial);
 
-    // -----------------------------------------------------------------------
-    // Atualização
-    // -----------------------------------------------------------------------
-
     /**
-     * @brief Atualiza o display a partir de um Stream.
+     * @brief Atualiza o display a partir de um Stream (HTTP, SD, SPIFFS).
      *
-     * Faz streaming da fonte para o Nextion em blocos de
-     * NEX_UPLOAD_TAMANHO_BLOCO bytes. Não requer RAM para o arquivo
-     * inteiro — ideal para download HTTP direto.
+     * Auto-detecta a baud do display, negocia upload, e envia por streaming.
      *
-     * @param fonte    Stream de leitura (HTTPClient, File, etc.).
+     * @param fonte    Stream de leitura.
      * @param tamanho  Tamanho total do arquivo .tft em bytes.
      * @return true    se o upload foi concluído com sucesso.
-     *
-     * @note O Nextion reinicia automaticamente após o upload.
-     *       A comunicação normal (NexDisplay) só volta após
-     *       reinicializar a serial.
      */
     bool atualizar(Stream& fonte, uint32_t tamanho);
 
     /**
      * @brief Atualiza o display a partir de um buffer na memória.
-     *
-     * Útil para arquivos pequenos já carregados na PSRAM.
      *
      * @param dados    Ponteiro para o conteúdo do .tft.
      * @param tamanho  Tamanho em bytes.
@@ -228,66 +143,49 @@ public:
      */
     bool atualizar(const uint8_t* dados, uint32_t tamanho);
 
-    // -----------------------------------------------------------------------
-    // Configuração
-    // -----------------------------------------------------------------------
-
-    /**
-     * @brief Define a baud rate atual de operação do display.
-     *
-     * Esta é a baud na qual o Nextion está rodando ANTES do upload.
-     * O comando de upload é enviado nesta velocidade.
-     *
-     * @param baud  Baud rate atual (padrão: 9600 de fábrica do Nextion).
-     *
-     * @note Se você usa `bauds=921600` no Nextion Editor, defina 921600.
-     */
-    void definirBaudOperacao(uint32_t baud) { _baudOperacao = baud; }
-
     /**
      * @brief Define a baud rate para a transferência do upload.
      *
-     * Após o comando de upload, o Nextion troca para esta baud.
-     * 115200 é o mais confiável. Valores maiores são mais rápidos
-     * mas podem ter erros em conexões longas.
+     * O display negocia a troca após aceitar o comando de upload.
+     * 115200 é o mais confiável. 921600 é mais rápido.
      *
-     * @param baud  Baud de upload (padrão: NEX_UPLOAD_BAUD_PADRAO).
+     * @param baud  Baud de upload (padrão: NEX_UPLOAD_BAUD_PADRAO = 115200).
      */
     void definirBaudUpload(uint32_t baud) { _baudUpload = baud; }
 
     /**
      * @brief Define o timeout de espera pela resposta do display.
-     *
      * @param ms  Timeout em milissegundos (padrão: NEX_UPLOAD_TIMEOUT_MS).
      */
     void definirTempoLimite(uint32_t ms) { _tempoLimite = ms; }
 
-    // -----------------------------------------------------------------------
-    // Callbacks
-    // -----------------------------------------------------------------------
-
     /**
-     * @brief Callback de progresso do upload.
-     * @param cb  `void cb(uint8_t porcentagem)` — valor de 0 a 100.
+     * @brief Retorna a baud rate detectada do display (após atualizar).
+     * @return Baud detectada, ou 0 se ainda não detectou.
      */
+    uint32_t baudDetectada() const { return _baudDetectada; }
+
+    /** @brief Callback de progresso (0–100). */
     void aoProgresso(CallbackProgressoNex cb) { _cbProgresso = cb; }
 
-    /**
-     * @brief Callback de erro.
-     * @param cb  `void cb(ErroNexUpload codigo, const char* mensagem)`.
-     */
+    /** @brief Callback de erro. */
     void aoErro(CallbackErroNex cb) { _cbErro = cb; }
+
+    // ── Métodos legados (compatibilidade) ─────────────────────────────
+    /** @deprecated Use apenas definirBaudUpload(). A baud de operação é auto-detectada. */
+    void definirBaudOperacao(uint32_t baud) { (void)baud; }
 
 private:
     HardwareSerial& _serial;
 
-    uint32_t _baudOperacao = 9600;
-    uint32_t _baudUpload   = NEX_UPLOAD_BAUD_PADRAO;
-    uint32_t _tempoLimite  = NEX_UPLOAD_TIMEOUT_MS;
+    uint32_t _baudUpload    = NEX_UPLOAD_BAUD_PADRAO;
+    uint32_t _baudDetectada = 0;
+    uint32_t _tempoLimite   = NEX_UPLOAD_TIMEOUT_MS;
 
     CallbackProgressoNex _cbProgresso = nullptr;
     CallbackErroNex      _cbErro      = nullptr;
 
+    bool    _detectarBaud();
     bool    _iniciarProtocolo(uint32_t tamanho);
     bool    _enviarBloco(const uint8_t* dados, size_t tamanho);
     bool    _aguardarAck();
