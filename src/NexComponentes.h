@@ -443,10 +443,10 @@ public:
     bool ciclo(uint32_t& dest) { return get("tim", dest); }
 
     /** @brief Habilita o timer. */
-    NexTimer& iniciar()  { set("en", 1); return *this; }
+    NexTimer& iniciar()  { set("en", (uint32_t)1); return *this; }
 
     /** @brief Desabilita o timer. */
-    NexTimer& parar()    { set("en", 0); return *this; }
+    NexTimer& parar()    { set("en", (uint32_t)0); return *this; }
 
     /**
      * @brief Registra callback disparado quando o timer expira.
@@ -490,10 +490,10 @@ public:
     }
 
     /** @brief Inicia a rolagem. */
-    NexTextoDeslizante& iniciar() { set("en", 1); return *this; }
+    NexTextoDeslizante& iniciar() { set("en", (uint32_t)1); return *this; }
 
     /** @brief Para a rolagem. */
-    NexTextoDeslizante& parar()   { set("en", 0); return *this; }
+    NexTextoDeslizante& parar()   { set("en", (uint32_t)0); return *this; }
 };
 
 // =============================================================================
