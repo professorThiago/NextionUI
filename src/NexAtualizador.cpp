@@ -44,13 +44,13 @@ bool NexAtualizador::atualizar(Stream& fonte, uint32_t tamanho)
     }
 
     // ── Passo 2: Trocar para baud de upload ───────────────────────────
-    if (_baudUpload != _baudDetectada) {
-        debugVerbose("[NexOTA] Trocando baud: " + String(_baudDetectada) +
-                     " -> " + String(_baudUpload));
-        _serial.flush();
-        delay(500);
-        _serial.updateBaudRate(_baudUpload);
-        delay(500);
+ //   if (_baudUpload != _baudDetectada) {
+ //       debugVerbose("[NexOTA] Trocando baud: " + String(_baudDetectada) +
+ //                    " -> " + String(_baudUpload));
+ //       _serial.flush();
+ //       delay(500);
+ //       _serial.updateBaudRate(_baudUpload);
+ //       delay(500);
     }
 
     // ── Passo 3: Enviar dados em blocos ───────────────────────────────
@@ -121,12 +121,12 @@ bool NexAtualizador::atualizar(const uint8_t* dados, uint32_t tamanho)
         return false;
     }
 
-    if (_baudUpload != _baudDetectada) {
-        _serial.flush();
-        delay(500);
-        _serial.updateBaudRate(_baudUpload);
-        delay(500);
-    }
+//    if (_baudUpload != _baudDetectada) {
+//        _serial.flush();
+//        delay(500);
+//        _serial.updateBaudRate(_baudUpload);
+//        delay(500);
+//    }
 
     uint32_t enviados = 0;
     uint8_t ultimoPct = 255;
@@ -211,40 +211,69 @@ bool NexAtualizador::_detectarBaud()
 
 bool NexAtualizador::_iniciarProtocolo(uint32_t tamanho)
 {
-    // ── Passo 1: Auto-detectar baud rate atual do display ─────────────
+    // ── Passo 1: Auto-detectar baud ───────────────────────────────────
     if (!_detectarBaud()) {
         _reportarErro(ErroNexUpload::TIMEOUT_CONEXAO,
                       "Display nao encontrado — verifique conexao");
         return false;
     }
 
-    // ── Passo 2: Garantir que estamos na baud detectada ───────────────
     _serial.updateBaudRate(_baudDetectada);
     delay(100);
     _limparBuffer();
 
-    // ── Passo 3: Preparar display para upload ─────────────────────────
-    // Enviar comandos vazios para garantir estado limpo
-    _enviarComandoNex("");
-    delay(100);
+    // ── Passo 2: Mudar baud do display (como o Nextion Editor) ────────
+    if (_baudUpload != _baudDetectada) {
+        char cmdBaud[32];
+        snprintf(cmdBaud, sizeof(cmdBaud), "baud=%lu",
+                 (unsigned long)_baudUpload);
+
+        debugInfo("[NexOTA] Mudando baud do display: " +
+                  String(_baudDetectada) + " -> " + String(_baudUpload));
+
+        _enviarComandoNex(cmdBaud);
+        delay(100);
+
+        // ESP32 troca para acompanhar
+        _serial.flush();
+        delay(50);
+        _serial.updateBaudRate(_baudUpload);
+        delay(100);
+        _limparBuffer();
+
+        // Confirma que o display responde na baud nova
+        _enviarComandoNex("");
+        delay(50);
+        _enviarComandoNex("connect");
+        delay(150);
+
+        if (_serial.available() == 0) {
+            debugAviso("[NexOTA] Display nao respondeu em " +
+                       String(_baudUpload) + " — voltando para " +
+                       String(_baudDetectada));
+            _serial.updateBaudRate(_baudDetectada);
+            delay(100);
+            _baudUpload = _baudDetectada; // fallback
+        } else {
+            debugInfo("[NexOTA] Display confirmado em " +
+                      String(_baudUpload) + " baud");
+            _limparBuffer();
+        }
+    }
+
+    // ── Passo 3: Enviar comando de upload na baud atual ───────────────
     _enviarComandoNex("");
     delay(100);
     _limparBuffer();
 
-    // ── Passo 4: Enviar comando de upload ─────────────────────────────
-    // Formato: whmi-wri <tamanho>,<baud_upload>,0
     char cmd[64];
     snprintf(cmd, sizeof(cmd), "whmi-wri %lu,%lu,0",
              (unsigned long)tamanho, (unsigned long)_baudUpload);
 
-    debugInfo("[NexOTA] Enviando: " + String(cmd) +
-             " (na baud " + String(_baudDetectada) + ")");
-
+    debugInfo("[NexOTA] Enviando: " + String(cmd));
     _enviarComandoNex(cmd);
 
-    // ── Passo 5: Aguardar 0x05 (ACK) na baud atual ───────────────────
     if (!_aguardarAck()) {
-        // Tenta novamente com mais delay
         debugAviso("[NexOTA] Sem ACK — tentando novamente...");
         delay(500);
         _limparBuffer();
